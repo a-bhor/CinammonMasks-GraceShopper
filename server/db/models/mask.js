@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const SOLID_STYLE = 'Solids'
 const FLORAL_STYLE = 'Florals'
+const PATTERNED_STYLE = 'Patterned'
 
 const Mask = db.define('mask', {
   name: {
@@ -22,7 +23,7 @@ const Mask = db.define('mask', {
   },
   style: {
     type: Sequelize.ENUM,
-    values: [SOLID_STYLE, FLORAL_STYLE]
+    values: [SOLID_STYLE, FLORAL_STYLE, PATTERNED_STYLE]
   },
   price: {
     type: Sequelize.FLOAT,
