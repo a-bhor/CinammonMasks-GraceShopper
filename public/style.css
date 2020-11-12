@@ -19,3 +19,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.main-footer {
+  display: flex;
+  margin: 1em;
+  display: inline-block;
+  justify-content: center;
+}
