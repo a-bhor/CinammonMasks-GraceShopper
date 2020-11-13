@@ -1,16 +1,14 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
-import {Navbar} from './components'
+import Navbar from './components/navbar'
 import Routes from './routes'
-import Home from './components/home'
 import Footer from './components/footer'
 
 const App = () => {
   return (
     <div id="main">
+      <Navbar />
       <Routes />
-      {/* <Home /> */}
       <Footer />
     </div>
   )
