@@ -13,7 +13,7 @@ import {me} from './store'
 import {Navbar} from './components/'
 import Home from './components/home'
 import ShoppingCart from './components/shopping-cart'
-
+import AllMasks from './components/all-masks'
 /**
  * COMPONENT
  */
@@ -37,6 +37,7 @@ class Routes extends Component {
           <Route exact path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/shopping-cart" component={ShoppingCart} />
+          <Route path="/masks" component={AllMasks} />
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
