@@ -26,7 +26,7 @@ const Mask = db.define('mask', {
     values: [SOLID_STYLE, FLORAL_STYLE, PATTERNED_STYLE]
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   inventoryQty: {
