@@ -1,7 +1,7 @@
 const User = require('./user')
 const Mask = require('./mask')
 const Order = require('./order')
-const Cart = require('./cart')
+// const Cart = require('./cart')
 const OrderDetail = require('./orderDetail')
 // const Sequelize = require('sequelize')
 
@@ -24,10 +24,12 @@ Order.belongsTo(User)
 Order.belongsToMany(Mask, {through: OrderDetail})
 Mask.belongsToMany(Order, {through: OrderDetail})
 
+/* ARCHANA: Removing Cart table from schema. Instead will use Order table with specific status to identify the user's cart
 // Cart is the table which will hold order "in the making" for a registered User
 // This is for cart persistance for the logged-in users even when session is closed.
 Mask.belongsToMany(User, {through: Cart})
 User.belongsToMany(Mask, {through: Cart})
+*/
 
 // We might have to define various class and/or instance methods for our models as and when required for specific functionality
 
@@ -41,6 +43,5 @@ module.exports = {
   User,
   Mask,
   Order,
-  OrderDetail,
-  Cart
+  OrderDetail
 }
