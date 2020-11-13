@@ -54,6 +54,7 @@ class SingleMask extends React.Component {
 
   render() {
     const {singleMask} = this.props
+    console.log(this.props.singleMask)
     const {quantity} = this.state
 
     return (

@@ -9,8 +9,9 @@ export const getSingleMask = singleMask => ({
 
 export const fetchSingleMask = maskId => async dispatch => {
   try {
-    const {data: mask} = await axios.get(`api/masks/${maskId}`)
+    const mask = await axios.get(`api/masks/${maskId}`)
     dispatch(getSingleMask(mask))
+    console.log(mask)
   } catch (error) {
     console.error('Error fetching mask!')
     console.error(error)

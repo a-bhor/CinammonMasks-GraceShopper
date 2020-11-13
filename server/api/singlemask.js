@@ -1,4 +1,4 @@
-const {Mask} = require('../db/models/index')
+const Mask = require('../db/models/mask')
 const router = require('express').Router()
 
 // GET 'api/masks/id'
@@ -22,6 +22,7 @@ router.get('/:maskId', async (req, res, next) => {
       }
     })
     res.json(singleMask)
+    console.log(singleMask)
   } catch (error) {
     next(error)
   }
