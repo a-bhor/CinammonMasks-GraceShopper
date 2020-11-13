@@ -3,6 +3,17 @@ const router = require('express').Router()
 
 // GET 'api/masks/id'
 
+// GET /masks
+router.get('/', async (req, res, next) => {
+  try {
+    //get all masks from db and send back
+    const masks = await Mask.findAll()
+    res.json(masks)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:maskId', async (req, res, next) => {
   try {
     const singleMask = await Mask.findOne({

@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleMask} from './singlemask'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import {fetchSingleMask} from '../store/singlemask'
 
 class SingleMask extends React.Component {
   constructor(props) {
@@ -64,6 +66,7 @@ class SingleMask extends React.Component {
           <button type="button" onClick={this.addMask} className="addMask">
             +
           </button>
+
           <input>{quantity}</input>
           <button
             type="button"
@@ -72,10 +75,24 @@ class SingleMask extends React.Component {
           >
             -
           </button>
+          <form>
+            <TextField
+              id="standard-number"
+              label="Number"
+              type="number"
+              InputLabelProps={{shrink: true}}
+            />
+          </form>
         </div>
-        <button type="onSubmit" onClick={addToCart} className="addToCart">
+        <Button
+          variant="outlined"
+          color="secondary"
+          type="onSubmit"
+          onClick={addToCart}
+          className="addToCart"
+        >
           Add to cart
-        </button>
+        </Button>
       </div>
     )
   }
@@ -86,8 +103,8 @@ const mapStateToProps = (state = {
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadSingleMask: id => dispatch(fetchSingleMask(id)),
-  addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
+  loadSingleMask: id => dispatch(fetchSingleMask(id))
+  // addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)
