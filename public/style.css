@@ -26,3 +26,7 @@ form div {
   display: inline-block;
   justify-content: center;
 }
+
+.SingleMaskPreviewImg {
+  width: 30%;
+}
