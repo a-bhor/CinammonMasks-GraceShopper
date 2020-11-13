@@ -2,9 +2,9 @@ import axios from 'axios'
 
 const GET_SINGLE_MASK = 'GET_SINGLE_MASK'
 
-export const getSingleMask = mask => ({
+export const getSingleMask = singleMask => ({
   type: GET_SINGLE_MASK,
-  mask
+  singleMask
 })
 
 export const fetchSingleMask = maskId => async dispatch => {
@@ -18,13 +18,13 @@ export const fetchSingleMask = maskId => async dispatch => {
 }
 
 const initialState = {
-  mask: {}
+  singleMask: {}
 }
 
 export default function maskReducer(state = initialState, action) {
   switch (action.type) {
     case GET_SINGLE_MASK:
-      return {...state, mask: action.mask}
+      return {...state, singleMask: action.singleMask}
     default:
       return state
   }

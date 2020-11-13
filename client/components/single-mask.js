@@ -52,15 +52,15 @@ class SingleMask extends React.Component {
   }
 
   render() {
-    const {mask} = this.props
+    const {singleMask} = this.props
     const {quantity} = this.state
 
     return (
       <div className="maskContainer">
-        <img className="singleMaskImg" src={mask.imageUrl} />
-        <h2>{mask.name}</h2>
-        <p>{mask.description}</p>
-        <p>{mask.price}</p>
+        <img className="singleMaskImg" src={singleMask.imageUrl} />
+        <h2>{singleMask.name}</h2>
+        <p>{singleMask.description}</p>
+        <p>{singleMask.price}</p>
         <div className="btn-group">
           <p>QTY</p>
           <button type="button" onClick={this.addMask} className="addMask">
@@ -98,8 +98,8 @@ class SingleMask extends React.Component {
   }
 }
 
-const mapStateToProps = (state = {
-  mask: state.mask
+const mapStateToProps = state => ({
+  singleMask: state.singleMask
 })
 
 const mapDispatchToProps = dispatch => ({
