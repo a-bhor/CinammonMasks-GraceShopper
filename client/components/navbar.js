@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {HiShoppingBag} from 'react-icons/hi'
+import {FcHome} from 'react-icons/fc'
+
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
+    <h1>Cinnamon Masks</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -19,8 +22,15 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+          <Link to="/">
+            {' '}
+            <FcHome />HomePage
+          </Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/shopping-cart">
+            <HiShoppingBag size="2em" />
+          </Link>
         </div>
       )}
     </nav>
