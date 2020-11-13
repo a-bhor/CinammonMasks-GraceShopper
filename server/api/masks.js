@@ -1,7 +1,7 @@
 const {Mask} = require('../db/models')
 const router = require('express').Router()
 
-// GET /masks
+// GET api/masks
 router.get('/', async (req, res, next) => {
   try {
     //get all masks from db and send back

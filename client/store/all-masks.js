@@ -26,7 +26,7 @@ const initialState = []
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_MASKS:
-      return [...state, action.masks]
+      return action.masks
     default:
       return state
   }

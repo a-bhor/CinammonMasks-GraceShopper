@@ -14,13 +14,12 @@ class AllMasks extends React.Component {
 
   viewSingleMask(id) {
     //redirect to /masks/:maskId
-    console.log('THIS.PROPS >>', this.props)
     this.props.history.push(`masks/${id}`)
   }
 
   render() {
     const {masks} = this.props
-    console.log('MASKS >>> ', masks)
+
     return (
       <div className="allMasksContainter">
         {/* {masks.map((mask) => (
@@ -41,14 +40,14 @@ class AllMasks extends React.Component {
           </div>
         )} */}
         {masks.map(mask => (
-          <div key={mask.id} onClick={this.viewSingleMask(mask.id)}>
+          <div key={mask.id} onClick={() => this.viewSingleMask(mask.id)}>
             <img
               className="SingleMaskPreviewImg"
               src={mask.imageUrl}
               alt="single mask preview"
             />
-            <h4>{mask.name}</h4>
-            <h5>{mask.style}</h5>
+            <h4>name: {mask.name}</h4>
+            <h5>style: {mask.style}</h5>
             <h5>{mask.price}</h5>
           </div>
         ))}
@@ -58,7 +57,7 @@ class AllMasks extends React.Component {
 }
 
 const mapState = state => ({
-  masks: state.masks
+  masks: state.allMasks
 })
 
 const mapDispatch = dispatch => ({
