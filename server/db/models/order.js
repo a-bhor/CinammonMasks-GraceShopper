@@ -9,7 +9,11 @@ const Order = db.define('order', {
     type: Sequelize.STRING
   },
   total: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
+  },
+  isSubmitted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
