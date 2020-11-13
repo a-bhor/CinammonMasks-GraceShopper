@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import ShoppingCart from './components/shopping-cart'
+import SingleMask from './components/single-mask'
 
 /**
  * COMPONENT
@@ -21,6 +22,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/masks/:maskId" component={SingleMask} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

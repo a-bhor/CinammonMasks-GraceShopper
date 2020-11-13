@@ -12,6 +12,7 @@ class SingleMask extends React.Component {
     }
     this.addMask = this.addMask.bind(this)
     this.subtractMask = this.subtractMask.bind(this)
+    this.addToCart = this.addToCart.bind(this)
   }
 
   componentDidMount() {
@@ -45,7 +46,7 @@ class SingleMask extends React.Component {
       let maskId = this.props.match.params.maskId
       let userId = this.props.match.params.userId
       let qty = this.state.quantity
-      this.props.addToCart(maskId, userId, qty)
+      // this.props.addToCart(maskId, userId, qty)
     } catch (error) {
       console.log(error)
     }
@@ -66,8 +67,6 @@ class SingleMask extends React.Component {
           <button type="button" onClick={this.addMask} className="addMask">
             +
           </button>
-
-          <input>{quantity}</input>
           <button
             type="button"
             onClick={this.subtractMask}
@@ -88,7 +87,7 @@ class SingleMask extends React.Component {
           variant="outlined"
           color="secondary"
           type="onSubmit"
-          onClick={addToCart}
+          onClick={this.addToCart}
           className="addToCart"
         >
           Add to cart
