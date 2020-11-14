@@ -106,8 +106,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadSingleMask: id => dispatch(fetchSingleMask(id))
+
   // waiting on addToCart functionality
   // addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)
