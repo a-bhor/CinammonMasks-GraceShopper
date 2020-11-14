@@ -32,6 +32,22 @@ User.belongsToMany(Mask, {through: Cart})
 */
 
 // We might have to define various class and/or instance methods for our models as and when required for specific functionality
+User.prototype.getCart = async function() {
+  const [order] = await this.getOrders({
+    where: {isSubmitted: false},
+    include: [Mask]
+  })
+  return order
+}
+
+Order.prototype.getOrderDetails = async function() {
+  const masks = await this.getMasks()
+  const cart = {}
+  // masks.forEach((mask) => {
+  //   cart[mask.id] = wine['order-item'].quantity
+  // })
+  return cart
+}
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
