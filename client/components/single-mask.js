@@ -46,6 +46,7 @@ class SingleMask extends React.Component {
       let maskId = this.props.match.params.maskId
       let userId = this.props.match.params.userId
       let qty = this.state.quantity
+      // will add addToCart
       // this.props.addToCart(maskId, userId, qty)
     } catch (error) {
       console.log(error)
@@ -53,8 +54,10 @@ class SingleMask extends React.Component {
   }
 
   render() {
-    const {singleMask} = this.props
-    const {quantity} = this.state
+    const {singleMask} = this.props.singleMask
+    // console.log('INSIDE SINGLE MASK RENDER! -->', this.props.singleMask)
+    // need to figure out which button we're using for the quantity
+    // const { quantity } = this.state
 
     return (
       <div className="maskContainer">
@@ -103,7 +106,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadSingleMask: id => dispatch(fetchSingleMask(id))
-  // addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)

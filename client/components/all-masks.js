@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getMasks} from '../store/all-masks'
 import Grid from '@material-ui/core/Grid'
+import {fetchCart} from '../store/cart'
 
 class AllMasks extends React.Component {
   constructor(props) {
@@ -11,6 +12,13 @@ class AllMasks extends React.Component {
 
   componentDidMount() {
     this.props.fetchMasks()
+    /**
+     * ARCHANA: Review placemen of loadCart().
+     * We may or may not have to load the cart in AllMasks
+     */
+    // console.log('Calling the fetchCart to test')
+    this.props.loadCart()
+    // console.log('cart loaded')
   }
 
   viewSingleMask(id) {
@@ -42,8 +50,8 @@ class AllMasks extends React.Component {
         )} */}
         <Grid container spacing={1} className="allMasksContainer">
           {masks.map(mask => (
-            <Grid item xs={4}>
-              <div key={mask.id} onClick={() => this.viewSingleMask(mask.id)}>
+            <Grid item xs={4} key={mask.id}>
+              <div onClick={() => this.viewSingleMask(mask.id)}>
                 <img
                   className="singleMaskPreviewImg"
                   src={mask.imageUrl}
@@ -66,7 +74,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchMasks: () => dispatch(getMasks())
+  fetchMasks: () => dispatch(getMasks()),
+  loadCart: () => dispatch(fetchCart())
 })
 
 export default connect(mapState, mapDispatch)(AllMasks)
