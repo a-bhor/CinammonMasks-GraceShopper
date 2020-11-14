@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getMasks} from '../store/all-masks'
-import {Link} from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
 
 class AllMasks extends React.Component {
   constructor(props) {
@@ -40,19 +40,22 @@ class AllMasks extends React.Component {
             </div>
           </div>
         )} */}
-        {masks.map(mask => (
-          <div key={mask.id} onClick={() => this.viewSingleMask(mask.id)}>
-            <img
-              className="SingleMaskPreviewImg"
-              src={mask.imageUrl}
-              alt="single mask preview"
-            />
-
-            <h4>name: {mask.name}</h4>
-            <h5>style: {mask.style}</h5>
-            <h5>{mask.price}</h5>
-          </div>
-        ))}
+        <Grid container spacing={1} className="allMasksContainer">
+          {masks.map(mask => (
+            <Grid item xs={4}>
+              <div key={mask.id} onClick={() => this.viewSingleMask(mask.id)}>
+                <img
+                  className="singleMaskPreviewImg"
+                  src={mask.imageUrl}
+                  alt="single mask preview"
+                />
+                <h4>name: {mask.name}</h4>
+                <h5>style: {mask.style}</h5>
+                <h5>{mask.price}</h5>
+              </div>
+            </Grid>
+          ))}
+        </Grid>
       </div>
     )
   }
