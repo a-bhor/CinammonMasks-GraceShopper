@@ -27,6 +27,11 @@ form div {
   justify-content: center;
 }
 
-.SingleMaskPreviewImg {
+.singleMaskPreviewImg {
   width: 30%;
+  height: 30%;
+}
+
+.allMasksContainer {
+  margin: 1em;
 }
