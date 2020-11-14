@@ -10,9 +10,10 @@ class SingleMask extends React.Component {
     this.state = {
       quantity: 0
     }
-    this.addMask = this.addMask.bind(this)
-    this.subtractMask = this.subtractMask.bind(this)
+    // this.addMask = this.addMask.bind(this)
+    // this.subtractMask = this.subtractMask.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -23,22 +24,9 @@ class SingleMask extends React.Component {
     }
   }
 
-  addMask() {
-    let qty = this.state.quantity
-    try {
-      this.setState({quantity: qty++})
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  subtractMask() {
-    let qty = this.state.quantity
-    try {
-      this.setState({quantity: qty--})
-    } catch (error) {
-      console.log(error)
-    }
+  handleChange(evt) {
+    const quantity = Number(evt.target.value)
+    this.setState({quantity})
   }
 
   addToCart() {
@@ -54,34 +42,42 @@ class SingleMask extends React.Component {
   }
 
   render() {
+    const {handleChange} = this
     const {singleMask} = this.props.singleMask
     // console.log('INSIDE SINGLE MASK RENDER! -->', this.props.singleMask)
     // need to figure out which button we're using for the quantity
-    // const { quantity } = this.state
+    const {quantity} = this.state
 
     return (
       <div className="maskContainer">
-        <img className="singleMaskImg" src={singleMask.imageUrl} />
+        <img
+          className="singleMaskImg"
+          src={singleMask.imageUrl}
+          width="500"
+          height="600"
+        />
         <h2>{singleMask.name}</h2>
         <p>{singleMask.description}</p>
         <p>{singleMask.price}</p>
         <div className="btn-group">
           <p>QTY</p>
-          <button type="button" onClick={this.addMask} className="addMask">
-            +
-          </button>
-          <button
-            type="button"
-            onClick={this.subtractMask}
-            className="subtractMask"
-          >
-            -
-          </button>
+          <p>{quantity}</p>
+
+          <input type="number" onChange={handleChange} min="0" max="10" />
+
           <form>
             <TextField
               id="standard-number"
               label="Number"
               type="number"
+              size="small"
+              InputProps={{
+                inputProps: {
+                  max: 10,
+                  min: 0
+                }
+              }}
+              onChange={handleChange}
               InputLabelProps={{shrink: true}}
             />
           </form>
