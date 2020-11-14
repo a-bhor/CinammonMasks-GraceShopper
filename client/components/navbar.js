@@ -12,7 +12,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <AppBar position="static" color="inherit" aria-label="menu">
       <Toolbar>
-        <h2>Cinnamon Masks</h2>
+        <h1>CINNAMON MASKS</h1>
         <div>
           <nav>
             {isLoggedIn ? (
