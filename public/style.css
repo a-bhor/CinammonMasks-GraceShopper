@@ -26,3 +26,12 @@ form div {
   display: inline-block;
   justify-content: center;
 }
+
+.singleMaskPreviewImg {
+  width: 30%;
+  height: 30%;
+}
+
+.allMasksContainer {
+  margin: 1em;
+}
