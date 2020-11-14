@@ -33,6 +33,26 @@ User.belongsToMany(Mask, {through: Cart})
 
 // We might have to define various class and/or instance methods for our models as and when required for specific functionality
 
+// For the current User, load the persistent cart from the database.
+// To be able to do that, first get all the orders for this user, with (isSubmitted == false), which indicates it is a temp order.
+User.prototype.getCart = async function() {
+  const [order] = await this.getOrders({
+    where: {isSubmitted: false}
+  })
+
+  //If no pending (CART) order is found then just return empty cart
+  if (!order) {
+    return []
+  }
+  const cart = await order.getOrderDetails()
+  return cart
+}
+
+Order.prototype.getOrderDetails = async function() {
+  const masks = await this.getMasks()
+  return masks
+}
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
