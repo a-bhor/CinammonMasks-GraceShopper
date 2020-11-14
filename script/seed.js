@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Mask, Order, Cart, OrderDetail} = require('../server/db/models')
+const {User, Mask, Order, OrderDetail} = require('../server/db/models')
 
 const SOLID_STYLE = 'Solids'
 const FLORAL_STYLE = 'Florals'
@@ -37,6 +37,13 @@ const usersData = [
     lastName: 'M',
     email: 'yohooM@gmail.com',
     password: '123'
+  },
+  {
+    firstName: 'Cinnamon',
+    lastName: 'Admin',
+    email: 'cinnamonA@gmail.com',
+    password: '123',
+    isAdmin: true
   }
 ]
 
@@ -94,10 +101,11 @@ const masksData = [
 ]
 
 const ordersData = [
-  {shippingAddress: 'New york city'},
-  {shippingAddress: 'Edison, NJ'},
-  {shippingAddress: 'North Carolina'},
-  {shippingAddress: 'Hawaii'}
+  {shippingAddress: 'New york city', isSubmitted: true},
+  {shippingAddress: 'Edison, NJ', isSubmitted: true},
+  {shippingAddress: 'North Carolina', isSubmitted: true},
+  {shippingAddress: 'Hawaii', isSubmitted: true},
+  {isSubmitted: false} // this order is for sample cart for a logged in user
 ]
 
 // const orderDetails = [{}]
@@ -121,6 +129,7 @@ async function seed() {
   await users[1].addOrder(orders[1])
   await users[0].addOrder(orders[2])
   await users[0].addOrder(orders[3])
+  await users[0].addOrder(orders[4]) // this one is actually the persistent cart for users[0]
 
   //Now let's add masks to these orders
   await orders[0].addMask(masks[0], {
@@ -161,9 +170,21 @@ async function seed() {
     }
   })
 
-  // Lastly let's create some temporary cart for user 1
-  await users[0].addMask(masks[1], {through: {quantity: 3}})
-  await users[0].addMask(masks[3], {through: {quantity: 1}})
+  // Lastly let's create some temporary cart for first user, users[0]
+  await orders[4].addMask(masks[1], {
+    through: {
+      price: 20,
+      quantity: 3
+    }
+  })
+  await orders[4].addMask(masks[3], {
+    through: {
+      price: 45,
+      quantity: 1
+    }
+  })
+  // await users[0].addMask(masks[1], {through: {quantity: 3}})
+  // await users[0].addMask(masks[3], {through: {quantity: 1}})
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
