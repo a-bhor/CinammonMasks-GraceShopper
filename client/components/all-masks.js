@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getMasks} from '../store/all-masks'
+import {Link} from 'react-router-dom'
 
 class AllMasks extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class AllMasks extends React.Component {
               src={mask.imageUrl}
               alt="single mask preview"
             />
+
             <h4>name: {mask.name}</h4>
             <h5>style: {mask.style}</h5>
             <h5>{mask.price}</h5>

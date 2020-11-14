@@ -1,17 +1,19 @@
 import axios from 'axios'
 
-const GET_SINGLE_MASK = 'GET_SINGLE_MASK'
+// action constants
+const SET_SINGLE_MASK = 'GET_SINGLE_MASK'
 
-export const getSingleMask = singleMask => ({
-  type: GET_SINGLE_MASK,
+export const setSingleMask = singleMask => ({
+  type: SET_SINGLE_MASK,
   singleMask
 })
 
+// thunk creators
 export const fetchSingleMask = maskId => async dispatch => {
   try {
-    const mask = await axios.get(`api/masks/${maskId}`)
-    dispatch(getSingleMask(mask))
-    console.log(mask)
+    const {data: singleMask} = await axios.get(`/api/masks/${maskId}`)
+    dispatch(setSingleMask(singleMask))
+    // console.log(singleMask)
   } catch (error) {
     console.error('Error fetching mask!')
     console.error(error)
@@ -24,7 +26,7 @@ const initialState = {
 
 export default function maskReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_SINGLE_MASK:
+    case SET_SINGLE_MASK:
       return {...state, singleMask: action.singleMask}
     default:
       return state
