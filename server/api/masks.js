@@ -20,6 +20,8 @@ router.get('/:maskId', async (req, res, next) => {
       }
     })
 
+//     console.log('INSIDE API CALL!', singleMask)
+
     res.json(singleMask)
   } catch (error) {
     next(error)
