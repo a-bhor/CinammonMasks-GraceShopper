@@ -86,17 +86,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-/* takes input from the textbox*/
-// handleChange(event) {
-//   this.setState({
-//     [event.target.name]: event.target.value
-//   })
+// /* takes input from the textbox*/
+// // handleChange(event) {
+// //   this.setState({
+// //     [event.target.name]: event.target.value
+// //   })
 
-// }
+// // }
 
-const SignInForm = props => {
+const AuthForm = props => {
   const classes = useStyles()
   const {name, displayName, handleSubmit, error} = props
+  console.log('the name: ', name)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -108,7 +109,12 @@ const SignInForm = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit}
+          name={name}
+          noValidate
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -141,6 +147,7 @@ const SignInForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            displayname={displayName}
           >
             Sign In
           </Button>
@@ -200,13 +207,13 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(SignInForm)
-export const Signup = connect(mapSignup, mapDispatch)(SignInForm)
+export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 /**
  * PROP TYPES
  */
-SignInForm.propTypes = {
+AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
