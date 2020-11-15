@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {fetchSingleMask} from '../store/singlemask'
+import {updateCart} from '../store/cart'
 
 class SingleMask extends React.Component {
   constructor(props) {
@@ -10,8 +11,6 @@ class SingleMask extends React.Component {
     this.state = {
       quantity: 0
     }
-    // this.addMask = this.addMask.bind(this)
-    // this.subtractMask = this.subtractMask.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -31,11 +30,17 @@ class SingleMask extends React.Component {
 
   addToCart() {
     try {
-      let maskId = this.props.match.params.maskId
-      let userId = this.props.match.params.userId
-      let qty = this.state.quantity
-      // will add addToCart
+      let {singleMask} = this.props.singleMask
+      let {userId} = this.props.match.params
+      let {quantity} = this.state
       // this.props.addToCart(maskId, userId, qty)
+      // if user is logged in, do this
+      if (!isLoggedin) {
+        // send entire mask object, pull from  state
+        this.props.addToCart(singleMask, (userId = null), quantity)
+      } else {
+        this.props.addToCart(singleMask, userId, quantity)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -44,7 +49,6 @@ class SingleMask extends React.Component {
   render() {
     const {handleChange} = this
     const {singleMask} = this.props.singleMask
-    // console.log('INSIDE SINGLE MASK RENDER! -->', this.props.singleMask)
     // need to figure out which button we're using for the quantity
     const {quantity} = this.state
 
@@ -97,13 +101,14 @@ class SingleMask extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleMask: state.singleMask
+  singleMask: state.singleMask,
+  isLoggedIn: !!state.user.id
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadSingleMask: id => dispatch(fetchSingleMask(id))
-  // waiting on addToCart functionality
-  // addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
+  loadSingleMask: maskId => dispatch(fetchSingleMask(maskId)),
+  addToCart: (maskId, userId, quantity) =>
+    dispatch(updateCart(maskId, userId, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)

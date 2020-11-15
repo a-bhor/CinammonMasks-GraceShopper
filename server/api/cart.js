@@ -1,5 +1,5 @@
 const router = require('express').Router()
-// const {User} = require('../db/models')
+const {User, Order, OrderDetail} = require('../db/models')
 
 // GET /api/cart
 router.get('/', async (req, res, next) => {
@@ -30,6 +30,42 @@ router.get('/', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const {userId} = req.body
+    const {singleMask} = req.body
+    const {quantity} = req.body
+
+    // first time adding to cart
+    // need to create an instance in db
+    Order.create({
+      userId: userId,
+      isSubmitted: false
+    })
+
+    OrderDetail.create({
+      orderId: Order.id,
+      quantity: quantity,
+      maskId: singleMask.id
+    })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  // cart exists, need to update
+  // if the cart has items
+  // check if mask has already been added
+  // for(let mask of cart){
+  //   if (mask.id === singleMask.id) {
+  // need to change order-detail syntax
+  // if it has, change the quantity
+  // mask.orderdetails.quantity += quantity
+  // dispatch cart to change state
 })
 
 module.exports = router
