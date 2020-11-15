@@ -30,6 +30,7 @@ class SingleMask extends React.Component {
 
   addToCart() {
     try {
+      let {isLoggedin} = this.props
       let {singleMask} = this.props.singleMask
       let {userId} = this.props.match.params
       let {quantity} = this.state

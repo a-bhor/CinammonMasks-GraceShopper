@@ -90,26 +90,26 @@ export const updateCart = (singleMask, userId, quantity) => async (
       }
     }
 
-    if (userId !== null) {
-      const {cart} = getState()
-
-      if (cart.length < 1) {
-        const {data: newCart} = await axios.post('/api/cart', {
-          singleMask,
-          userId,
-          quantity
-        })
-        dispatch(addToCart(newCart))
-      } else {
-        const {data: updatedCart} = await axios.put('/api/cart', {
-          singleMask,
-          userId,
-          quantity
-        })
-        // console.log('HELLO!!!', updatedCart)
-        dispatch(addToCart(updatedCart))
-      }
-    }
+    // BUGS:
+    // if (userId !== null) {
+    //   const {cart} = getState()
+    //   console.log(cart)
+    // //   if (cart.length < 1) {
+    // //     const {data: newCart} = await axios.post('/api/cart', singleMask, {
+    // //       userId,
+    // //       quantity
+    // //     })
+    // //     dispatch(addToCart(newCart))
+    // //   } else {
+    // //     const {data: updatedCart} = await axios.put('/api/cart', {
+    // //       singleMask,
+    // //       userId,
+    // //       quantity
+    // //     })
+    // //     // console.log('HELLO!!!', updatedCart)
+    // //     dispatch(addToCart(updatedCart))
+    // //   }
+    // // }
   } catch (error) {
     console.error('Could not update cart!')
     console.log(error)

@@ -58,14 +58,13 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   // cart exists, need to update
-  // if the cart has items
-  // check if mask has already been added
-  // for(let mask of cart){
-  //   if (mask.id === singleMask.id) {
+  // if the cart has items, check if mask has already been added
+  // for(let mask of cart) ...
+  //   if (mask.id === singleMask.id) ...
   // need to change order-detail syntax
   // if it has, change the quantity
   // mask.orderdetails.quantity += quantity
-  // dispatch cart to change state
+  // send updated cart back
 })
 
 module.exports = router
