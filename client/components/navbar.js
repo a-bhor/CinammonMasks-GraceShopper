@@ -12,13 +12,14 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <AppBar position="static" color="inherit" aria-label="menu">
       <Toolbar>
-        <h2>Cinnamon Masks</h2>
+        <h1>CINNAMON MASKS</h1>
         <div>
           <nav>
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
                 <Link to="/home">Home</Link>
+                <Link to="/masks">Masks</Link>
                 <a href="#" onClick={handleClick}>
                   Logout
                 </a>
