@@ -42,15 +42,18 @@ User.prototype.getCart = async function() {
 
   //If no pending (CART) order is found then just return empty cart
   if (!order) {
-    return []
+    return {}
   }
-  const cart = await order.getOrderDetails()
-  return cart
-}
 
-Order.prototype.getOrderDetails = async function() {
-  const masks = await this.getMasks()
-  return masks
+  const masksInThisOrder = await order.getMasks()
+
+  let cart = {}
+  if (masksInThisOrder.length > 0) {
+    masksInThisOrder.forEach(mask => {
+      cart[mask.id] = mask['order-detail'].quantity
+    })
+  }
+  return cart
 }
 
 /**
