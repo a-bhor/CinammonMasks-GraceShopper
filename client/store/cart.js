@@ -26,7 +26,7 @@ const RESET_CART = 'RESET_CART'
  */
 const initialCart = localStorage.getItem('cart')
   ? JSON.parse(localStorage.getItem('cart'))
-  : []
+  : {}
 
 /**
  * ACTION CREATORS
@@ -64,7 +64,7 @@ export default function(state = initialCart, action) {
   switch (action.type) {
     case SET_CART:
       console.log('inside reducer, initialCart is : ', state)
-      return [...action.cart]
+      return {...action.cart}
     default:
       return state
   }
