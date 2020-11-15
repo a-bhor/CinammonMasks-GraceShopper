@@ -6,6 +6,7 @@ import axios from 'axios'
  */
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const UPDATE_CART = 'UPDATE_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const RESET_CART = 'RESET_CART'
 
@@ -26,14 +27,14 @@ const RESET_CART = 'RESET_CART'
  */
 const initialCart = localStorage.getItem('cart')
   ? JSON.parse(localStorage.getItem('cart'))
-  : []
+  : {}
 
 /**
  * ACTION CREATORS
  */
 const setCart = cart => ({type: SET_CART, cart})
-
-const addToCart = cart => ({type: ADD_TO_CART, cart})
+const addToCart = (maskId, quantity) => ({type: ADD_TO_CART, maskId, quantity})
+const updateCart = (maskId, quantity) => ({type: UPDATE_CART, maskId, quantity})
 
 /**
  * THUNK CREATORS
@@ -58,58 +59,33 @@ export const fetchCart = () => async (dispatch, getState) => {
   }
 }
 
-export const updateCart = (singleMask, userId, quantity) => async (
-  dispatch,
-  getState
-) => {
+// pull user from getState()
+export const addedToCart = (maskId, quantity) => async (dispatch, getState) => {
   try {
-    if (userId === null) {
-      // get the cart
-      const {cart} = getState()
-      // check if cart is empty
-      if (cart.length < 1) {
-        // if it is empty, add singlemask and dispatch to change state
-        cart.push(singleMask)
-        dispatch(addToCart(cart))
-      } else {
-        // if the cart has items
-        // check if mask has already been added
-        for (let mask of cart) {
-          if (mask.id === singleMask.id) {
-            // need to change order-detail syntax
-            // if it has, change the quantity
-            mask.orderdetail.quantity += quantity
-            // dispatch cart to change state
-            dispatch(addToCart(cart))
-          } else {
-            // if the mask hasn't been added yet, add mask
-            cart.push(singleMask)
-            dispatch(addToCart(cart))
-          }
-        }
-      }
+    const {user} = getState()
+    if (user.id) {
+      const {data: maskId, quantity} = await axios.post('/api/cart', {
+        maskId,
+        quantity
+      })
     }
+    dispatch(addToCart(maskId, quantity))
+  } catch (error) {
+    console.error('Could not update cart!')
+    console.log(error)
+  }
+}
 
-    // BUGS:
-    // if (userId !== null) {
-    //   const {cart} = getState()
-    //   console.log(cart)
-    // //   if (cart.length < 1) {
-    // //     const {data: newCart} = await axios.post('/api/cart', singleMask, {
-    // //       userId,
-    // //       quantity
-    // //     })
-    // //     dispatch(addToCart(newCart))
-    // //   } else {
-    // //     const {data: updatedCart} = await axios.put('/api/cart', {
-    // //       singleMask,
-    // //       userId,
-    // //       quantity
-    // //     })
-    // //     // console.log('HELLO!!!', updatedCart)
-    // //     dispatch(addToCart(updatedCart))
-    // //   }
-    // // }
+export const updatedCart = (maskId, quantity) => async (dispatch, getState) => {
+  try {
+    const {user} = getState()
+    if (user.id) {
+      const {data: maskId, quantity} = await axios.put('/api/cart', {
+        maskId,
+        quantity
+      })
+    }
+    dispatch(updateCart(maskId, quantity))
   } catch (error) {
     console.error('Could not update cart!')
     console.log(error)
@@ -123,9 +99,18 @@ export default function(state = initialCart, action) {
   switch (action.type) {
     case SET_CART:
       console.log('inside reducer, initialCart is : ', state)
-      return [...action.cart]
+      return {...state, ...action.cart}
     case ADD_TO_CART:
-      return {...state, cart: action.cart}
+      let currentCart = {...state}
+      if (currentCart[action.maskId]) {
+        let previousQty = currentCart[action.maskId]
+        currentCart[action.maskId] = previousQty + action.quantity
+      } else {
+        currentCart[action.maskId] = action.quantity
+      }
+      return {...state, ...currentCart}
+    case UPDATE_CART:
+
     default:
       return state
   }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {fetchSingleMask} from '../store/singlemask'
-import {updateCart} from '../store/cart'
+import {addedToCart} from '../store/cart'
 
 class SingleMask extends React.Component {
   constructor(props) {
@@ -31,16 +31,15 @@ class SingleMask extends React.Component {
   addToCart() {
     try {
       let {isLoggedin} = this.props
-      let {singleMask} = this.props.singleMask
-      let {userId} = this.props.match.params
+      let {maskId} = this.props.match.params
       let {quantity} = this.state
       // this.props.addToCart(maskId, userId, qty)
       // if user is logged in, do this
       if (!isLoggedin) {
         // send entire mask object, pull from  state
-        this.props.addToCart(singleMask, (userId = null), quantity)
+        this.props.addToCart(maskId, quantity)
       } else {
-        this.props.addToCart(singleMask, userId, quantity)
+        this.props.addToCart(maskId, quantity)
       }
     } catch (error) {
       console.log(error)
@@ -65,20 +64,16 @@ class SingleMask extends React.Component {
         <p>{singleMask.description}</p>
         <p>{singleMask.price}</p>
         <div className="btn-group">
-          <p>QTY</p>
-          <p>{quantity}</p>
-
-          <input type="number" onChange={handleChange} min="0" max="10" />
-
           <form>
+            <p>QTY</p>
             <TextField
               id="standard-number"
-              label="Number"
               type="number"
+              label="QTY"
               size="small"
               InputProps={{
                 inputProps: {
-                  max: 10,
+                  max: 100,
                   min: 0
                 }
               }}
@@ -103,13 +98,14 @@ class SingleMask extends React.Component {
 
 const mapStateToProps = state => ({
   singleMask: state.singleMask,
+  userId: state.user.id,
   isLoggedIn: !!state.user.id
 })
 
 const mapDispatchToProps = dispatch => ({
   loadSingleMask: maskId => dispatch(fetchSingleMask(maskId)),
   addToCart: (maskId, userId, quantity) =>
-    dispatch(updateCart(maskId, userId, quantity))
+    dispatch(addedToCart(maskId, userId, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)

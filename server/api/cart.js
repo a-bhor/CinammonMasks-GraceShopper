@@ -34,21 +34,19 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const {userId} = req.body
-    const {singleMask} = req.body
+    const {maskId} = req.body
     const {quantity} = req.body
 
     // first time adding to cart
     // need to create an instance in db
     Order.create({
-      userId: userId,
-      isSubmitted: false
+      userId: req.user.id
     })
 
     OrderDetail.create({
       orderId: Order.id,
       quantity: quantity,
-      maskId: singleMask.id
+      maskId: maskId
     })
   } catch (error) {
     console.log(error)
