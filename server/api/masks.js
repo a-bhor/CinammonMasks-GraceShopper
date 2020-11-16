@@ -1,7 +1,8 @@
 const {Mask} = require('../db/models/')
 const router = require('express').Router()
+const adminOnly = require('./accessControl')
 
-// GET api/masks
+// GET 'api/masks'
 router.get('/', async (req, res, next) => {
   try {
     //get all masks from db and send back
@@ -12,6 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET 'api/masks/:maskId'
 router.get('/:maskId', async (req, res, next) => {
   try {
     const singleMask = await Mask.findOne({
@@ -20,7 +22,7 @@ router.get('/:maskId', async (req, res, next) => {
       }
     })
 
-//     console.log('INSIDE API CALL!', singleMask)
+    //     console.log('INSIDE API CALL!', singleMask)
 
     res.json(singleMask)
   } catch (error) {
@@ -28,42 +30,55 @@ router.get('/:maskId', async (req, res, next) => {
   }
 })
 
-// // POST '/api/masks'
-// router.post('/', async (req, res, next) => {
-//   try {
-//     // req.body?
-//     const newMask = await Mask.create(req.body)
-//     res.json(newMask)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+// POST '/api/masks' ADMIN ONLY
+router.post('/', adminOnly, async (req, res, next) => {
+  try {
+    const {name, description, imageUrl, style, price, inventoryQty} = req.body
+    const newMask = await Mask.create({
+      name,
+      description,
+      imageUrl,
+      style,
+      price,
+      inventoryQty
+    })
+    res.json(newMask)
+  } catch (error) {
+    next(error)
+  }
+})
 
-// // DELETE '/api/masks/id'
-// router.delete('/:maskId', async (req, res, next) => {
-//   try {
-//     await Mask.destroy({
-//       where: {
-//         id: req.params.maskId
-//       }
-//     })
-//     res.sendStatus(204)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+// DELETE '/api/masks/id' ADMIN ONLY
+router.delete('/:maskId', adminOnly, async (req, res, next) => {
+  try {
+    await Mask.destroy({
+      where: {
+        id: req.params.maskId
+      }
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
 
-// // UPDATE 'api/masks/id'
-// router.put('/:maskId', async (req, res, next) => {
-//   try {
-//     const updatedMask = await Mask.findByPk(req.params.maskId)
-//     // req.body?
-//     updatedMask.update(req.body)
-//     res.json(updatedMask)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+// UPDATE 'api/masks/id' ADMIN ONLY
+router.put('/:maskId', adminOnly, async (req, res, next) => {
+  try {
+    const updatedMask = await Mask.findByPk(req.params.maskId)
+    const {name, description, imageUrl, style, price, inventoryQty} = req.body
+    updatedMask.update({
+      name,
+      description,
+      imageUrl,
+      style,
+      price,
+      inventoryQty
+    })
+    res.json(updatedMask)
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router
-//when posting: destruct only what you need off of req.body

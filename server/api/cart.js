@@ -8,7 +8,6 @@ router.get('/', async (req, res, next) => {
     //If this is a logged in user, then request object will have user setup on it by the login authentication
     // Refer router.post('/login') from "./server/auth/index.js"
     if (req.user) {
-      // console.log('req.user id is : ', req.user.id)
       const cart = await req.user.getCart()
       res.json(cart)
     } else {
@@ -34,10 +33,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// POST /api/cart
+// POST /api/cart/:maskId
 router.post('/:maskId', async (req, res, next) => {
   try {
-    const userId = 2 //req.user.id
+    const userId = req.user.id
     const [cart, created] = await Order.findOrCreate({
       where: {
         isSubmitted: false,
@@ -50,9 +49,6 @@ router.post('/:maskId', async (req, res, next) => {
     // If NO, then we need to add this mask to the current cart (order)
     const maskId = parseInt(req.params.maskId) //parseInt was needed because hasMask was not working without it
     const cartHasMask = await cart.hasMask(maskId)
-
-    // console.log('maskId : ', maskId)
-    // console.log('cartHasMask : ', cartHasMask)
 
     if (cartHasMask) {
       //update this mask record
@@ -72,6 +68,58 @@ router.post('/:maskId', async (req, res, next) => {
       })
     }
     res.sendStatus(201)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// PUT /api/cart/:maskId
+router.put('/:maskId', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const cart = await Order.findOne({
+      where: {
+        isSubmitted: false,
+        userId: userId
+      }
+    })
+
+    const maskId = parseInt(req.params.maskId) //parseInt was needed because hasMask was not working without it
+    const cartHasMask = await cart.hasMask(maskId)
+    if (cartHasMask) {
+      const [maskFromExistingCart] = await cart.getMasks({
+        where: {
+          id: maskId
+        }
+      })
+
+      maskFromExistingCart['order-detail'].quantity = req.body.quantity
+      await maskFromExistingCart['order-detail'].save()
+    }
+    res.sendStatus(202)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// DELETE /api/cart/:maskId
+router.delete('/:maskId', async (req, res, next) => {
+  try {
+    const userId = 1 //req.user.id
+    const cart = await Order.findOne({
+      where: {
+        isSubmitted: false,
+        userId: userId
+      }
+    })
+
+    const maskId = parseInt(req.params.maskId) //parseInt was needed because hasMask was not working without it
+    const cartHasMask = await cart.hasMask(maskId)
+
+    if (cartHasMask) {
+      await cart.removeMask(maskId)
+    }
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
