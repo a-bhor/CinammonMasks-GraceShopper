@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {HiShoppingBag} from 'react-icons/hi'
-import {FcHome} from 'react-icons/fc'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import HomeIcon from '@material-ui/icons/Home'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
@@ -30,7 +30,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                 {/* The navbar will show these links before you log in */}
                 <Link to="/">
                   {' '}
-                  <FcHome />
+                  <HomeIcon />
                   HomePage
                 </Link>
                 <Link to="/masks">Masks</Link>

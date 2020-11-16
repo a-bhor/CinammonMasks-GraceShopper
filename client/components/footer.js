@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {RiFacebookBoxLine} from 'react-icons/ri'
+
+import AppBar from '@material-ui/core/AppBar'
 import {BottomNavigation, BottomNavigationAction} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import InfoIcon from '@material-ui/icons/Info'
@@ -32,18 +33,24 @@ export function Footer() {
   const [value, setValue] = React.useState(0)
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue)
-      }}
-      showLabels
-      className={classes.root}
+    <AppBar
+      position="fixed"
+      color="transparent"
+      style={{top: 'auto', bottom: 0}}
     >
-      <BottomNavigationAction label="About Us" icon={<InfoIcon />} />
-      <BottomNavigationAction label="Contact" icon={<ContactsIcon />} />
-      <BottomNavigationAction label="FaceBook" icon={<FacebookIcon />} />
-    </BottomNavigation>
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue)
+        }}
+        showLabels
+        className={classes.root}
+      >
+        <BottomNavigationAction label="About Us" icon={<InfoIcon />} />
+        <BottomNavigationAction label="Contact" icon={<ContactsIcon />} />
+        <BottomNavigationAction label="FaceBook" icon={<FacebookIcon />} />
+      </BottomNavigation>
+    </AppBar>
   )
 }
 
