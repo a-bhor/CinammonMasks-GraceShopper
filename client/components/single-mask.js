@@ -48,39 +48,43 @@ class SingleMask extends React.Component {
         <img
           className="singleMaskImg"
           src={singleMask.imageUrl}
-          width="300"
-          height="400"
+          width="350"
+          height="450"
         />
-        <h2>{singleMask.name}</h2>
-        <p>{singleMask.description}</p>
-        <p>${Number(singleMask.price).toFixed(2)}</p>
-        <div className="btn-group">
-          <form>
-            <p>QTY</p>
-            <TextField
-              id="standard-number"
-              type="number"
-              size="small"
-              InputProps={{
-                inputProps: {
-                  max: 100,
-                  min: 0
-                }
-              }}
-              onChange={handleChange}
-              InputLabelProps={{shrink: true}}
-            />
-          </form>
+        <div className="maskInfo">
+          <h2>{singleMask.name}</h2>
+          <p>{singleMask.description}</p>
+          <p>${Number(singleMask.price).toFixed(2)}</p>
+          <div className="btn-group">
+            <form className="qtyForCart">
+              <p>QTY</p>
+              <TextField
+                id="standard-number"
+                type="number"
+                size="small"
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 0
+                  }
+                }}
+                onChange={handleChange}
+                InputLabelProps={{shrink: true}}
+              />
+            </form>
+          </div>
+          <div className="addToCartBtn">
+            <Button
+              variant="outlined"
+              color="secondary"
+              type="onSubmit"
+              onClick={this.addToCart}
+              className="addToCartBtn"
+            >
+              Add to cart
+            </Button>
+          </div>
         </div>
-        <Button
-          variant="outlined"
-          color="secondary"
-          type="onSubmit"
-          onClick={this.addToCart}
-          className="addToCart"
-        >
-          Add to cart
-        </Button>
       </div>
     )
   }

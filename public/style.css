@@ -1,5 +1,6 @@
 body {
-  font-family: 'Omnes ExtraLight';
+  font-family: 'LFT Etica Mono';
+  font-size: 16px;
 }
 
 a {
@@ -40,14 +41,27 @@ form div {
 .maskContainer {
   display: flex;
   margin: 3em;
-  justify-content: flex-start;
   position: relative;
+  margin-right: 320px;
 }
 
-#appbar {
+.maskInfo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  justify-content: space-around;
+  margin-left: 150px;
+}
+
+.qtyForCart {
+  display: flex;
+  align-items: flex-end;
+  font-size: 16px;
+}
+.appbar {
   font-family: 'Arial';
 }
 
 .cinnamon-header {
-  font-size: 40px;
+  font-size: 50px;
 }
