@@ -35,3 +35,11 @@ form div {
 .allMasksContainer {
   margin: 1em;
 }
+
+.navbar {
+  display: inline-block;
+}
+
+.cinnamon-header {
+  font-size: 40px;
+}
