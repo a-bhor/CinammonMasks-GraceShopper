@@ -34,10 +34,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// POST /api/cart
+// POST /api/cart/:maskId
 router.post('/:maskId', async (req, res, next) => {
   try {
-    const userId = 2 //req.user.id
+    const userId = req.user.id
     const [cart, created] = await Order.findOrCreate({
       where: {
         isSubmitted: false,

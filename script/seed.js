@@ -59,7 +59,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Subrina H)',
+    name: 'Subrina H',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:
@@ -69,7 +69,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Jersey Tie Dye Mask)',
+    name: 'Jersey Tie Dye Mask',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:

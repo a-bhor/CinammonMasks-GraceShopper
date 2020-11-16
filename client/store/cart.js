@@ -60,35 +60,42 @@ export const fetchCart = () => async (dispatch, getState) => {
 }
 
 // pull user from getState()
-export const addedToCart = (maskId, quantity) => async (dispatch, getState) => {
+export const addedToCart = (maskId, quantity, price) => async (
+  dispatch,
+  getState
+) => {
   try {
     const {user} = getState()
     if (user.id) {
-      const {data: maskId, quantity} = await axios.post('/api/cart', {
-        maskId,
-        quantity
+      await axios.post(`/api/cart/${maskId}`, {
+        quantity,
+        price
       })
     }
     dispatch(addToCart(maskId, quantity))
-  } catch (error) {
-    console.error('Could not update cart!')
-    console.log(error)
+  } catch (err) {
+    console.error('Could not add to cart!')
+    console.log(err)
   }
 }
 
-export const updatedCart = (maskId, quantity) => async (dispatch, getState) => {
+export const updatedCart = (maskId, quantity, price) => async (
+  dispatch,
+  getState
+) => {
   try {
     const {user} = getState()
     if (user.id) {
-      const {data: maskId, quantity} = await axios.put('/api/cart', {
+      const {data: maskId, quantity} = await axios.put(`/api/cart/${maskId}`, {
         maskId,
-        quantity
+        quantity,
+        price
       })
     }
     dispatch(updateCart(maskId, quantity))
-  } catch (error) {
+  } catch (err) {
     console.error('Could not update cart!')
-    console.log(error)
+    console.log(err)
   }
 }
 
@@ -110,6 +117,7 @@ export default function(state = initialCart, action) {
       }
       return {...state, ...currentCart}
     case UPDATE_CART:
+    // let currentCart = {...state}
 
     default:
       return state

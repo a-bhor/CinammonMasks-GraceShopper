@@ -30,17 +30,10 @@ class SingleMask extends React.Component {
 
   addToCart() {
     try {
-      let {isLoggedin} = this.props
       let {maskId} = this.props.match.params
       let {quantity} = this.state
-      // this.props.addToCart(maskId, userId, qty)
-      // if user is logged in, do this
-      if (!isLoggedin) {
-        // send entire mask object, pull from  state
-        this.props.addToCart(maskId, quantity)
-      } else {
-        this.props.addToCart(maskId, quantity)
-      }
+      let {price} = this.props.singleMask
+      this.props.addToCart(maskId, quantity, price)
     } catch (error) {
       console.log(error)
     }
@@ -48,9 +41,7 @@ class SingleMask extends React.Component {
 
   render() {
     const {handleChange} = this
-    const {singleMask} = this.props.singleMask
-    // need to figure out which button we're using for the quantity
-    const {quantity} = this.state
+    const {singleMask} = this.props
 
     return (
       <div className="maskContainer">
@@ -62,14 +53,13 @@ class SingleMask extends React.Component {
         />
         <h2>{singleMask.name}</h2>
         <p>{singleMask.description}</p>
-        <p>{singleMask.price}</p>
+        <p>${Number(singleMask.price).toFixed(2)}</p>
         <div className="btn-group">
           <form>
             <p>QTY</p>
             <TextField
               id="standard-number"
               type="number"
-              label="QTY"
               size="small"
               InputProps={{
                 inputProps: {
@@ -98,14 +88,13 @@ class SingleMask extends React.Component {
 
 const mapStateToProps = state => ({
   singleMask: state.singleMask,
-  userId: state.user.id,
-  isLoggedIn: !!state.user.id
+  userId: state.user.id
 })
 
 const mapDispatchToProps = dispatch => ({
   loadSingleMask: maskId => dispatch(fetchSingleMask(maskId)),
-  addToCart: (maskId, userId, quantity) =>
-    dispatch(addedToCart(maskId, userId, quantity))
+  addToCart: (maskId, quantity, price) =>
+    dispatch(addedToCart(maskId, quantity, price))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)
