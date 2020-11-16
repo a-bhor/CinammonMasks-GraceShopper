@@ -1,9 +1,10 @@
 body {
-  font-family: 'Hero New Hairline';
+  font-family: 'Omnes ExtraLight';
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 label {
@@ -34,4 +35,12 @@ form div {
 
 .allMasksContainer {
   margin: 1em;
+}
+
+#appbar {
+  font-family: 'Arial';
+}
+
+.cinnamon-header {
+  font-size: 40px;
 }
