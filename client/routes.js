@@ -8,6 +8,7 @@ import {me} from './store'
 import ShoppingCart from './components/shopping-cart'
 import SingleMask from './components/single-mask'
 import AllMasks from './components/all-masks'
+import Checkout from './components/checkout'
 /**
  * COMPONENT
  */
@@ -24,6 +25,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/masks" component={AllMasks} />
         <Route exact path="/masks/:maskId" component={SingleMask} />
+        <Route exact path="/checkout" component={Checkout} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
