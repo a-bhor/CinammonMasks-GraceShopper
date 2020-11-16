@@ -1,11 +1,11 @@
-// import React from 'react'
-// import {connect} from 'react-redux'
-// import PropTypes from 'prop-types'
-// import {auth} from '../store'
+import React from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {auth} from '../store'
 
-// /**
-//  * COMPONENT
-//  */
+/**
+ * COMPONENT
+ */
 // const AuthForm = props => {
 //   const {name, displayName, handleSubmit, error} = props
 
@@ -33,11 +33,6 @@
 //     </div>
 //   )
 // }
-
-import React from 'react'
-import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {auth} from '../store'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -86,14 +81,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// /* takes input from the textbox*/
-// // handleChange(event) {
-// //   this.setState({
-// //     [event.target.name]: event.target.value
-// //   })
-
-// // }
-
 const AuthForm = props => {
   const classes = useStyles()
   const {name, displayName, handleSubmit, error} = props
@@ -107,7 +94,7 @@ const AuthForm = props => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {name}
         </Typography>
         <form
           className={classes.form}
@@ -147,9 +134,8 @@ const AuthForm = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            displayname={displayName}
           >
-            Sign In
+            {displayName}
           </Button>
           <Grid container>
             <Grid item xs>
@@ -164,6 +150,7 @@ const AuthForm = props => {
             </Grid>
           </Grid>
         </form>
+        <a href="/auth/google">{displayName} with Google</a>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -181,7 +168,7 @@ const AuthForm = props => {
  */
 const mapLogin = state => {
   return {
-    name: 'login',
+    name: 'Login',
     displayName: 'Login',
     error: state.user.error
   }
@@ -189,7 +176,7 @@ const mapLogin = state => {
 
 const mapSignup = state => {
   return {
-    name: 'signup',
+    name: 'Sign Up',
     displayName: 'Sign Up',
     error: state.user.error
   }
