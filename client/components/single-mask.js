@@ -48,8 +48,8 @@ class SingleMask extends React.Component {
         <img
           className="singleMaskImg"
           src={singleMask.imageUrl}
-          width="500"
-          height="600"
+          width="300"
+          height="400"
         />
         <h2>{singleMask.name}</h2>
         <p>{singleMask.description}</p>
