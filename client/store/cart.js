@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {noExtendLeft} from 'sequelize/types/lib/operators'
 // import history from '../history'
 
 /**
@@ -131,16 +130,16 @@ export const deleteFromCart = maskId => async (dispatch, getState) => {
   }
 }
 
-export const deleteCart = cart => async (dispatch, getState) => {
-  try {
-    const {user} = getState()
-    if (user.id) {
-      // delete entire order
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
+// export const deleteCart = cart => async (dispatch, getState) => {
+//   try {
+//     const {user} = getState()
+//     if (user.id) {
+//       // delete entire order
+//     }
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 /**
  * REDUCER

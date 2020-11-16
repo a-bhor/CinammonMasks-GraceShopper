@@ -89,7 +89,6 @@ const App = () => {
                 onChangeData={setData}
               /> */}
                 {data.content}
-                <AllMasks />
                 <Routes />
               </Content>
             </>
