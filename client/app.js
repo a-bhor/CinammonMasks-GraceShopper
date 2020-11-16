@@ -57,7 +57,6 @@ const App = () => {
           </>
         </Root>
       </StylesProvider>
-      <NewFooter />
       <Footer />
     </div>
   )
