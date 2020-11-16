@@ -6,6 +6,7 @@ import {HiShoppingBag} from 'react-icons/hi'
 import {FcHome} from 'react-icons/fc'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
@@ -36,7 +37,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Sign Up</Link>
                 <Link to="/shopping-cart">
-                  <HiShoppingBag size="2em" />
+                  <AddShoppingCartIcon size="3em" />
                 </Link>
               </div>
             )}
