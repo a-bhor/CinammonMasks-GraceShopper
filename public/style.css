@@ -55,31 +55,7 @@ form div {
 }
 
 .maskContainer {
-  display: flex;
   margin: 3em;
-  position: relative;
-  justify-content: center;
-  margin-right: 300px;
-  margin-left: 300px;
-}
-
-.maskInfo {
-  display: flex;
-  flex-direction: column;
-  max-width: 50%;
-  margin-right: 50px;
-  justify-content: space-around;
-  margin-left: 150px;
-}
-
-.singleMaskImg {
-  max-width: 50%;
-}
-
-.qtyForCart {
-  display: flex;
-  align-items: flex-end;
-  font-size: 16px;
 }
 
 .appbar {
