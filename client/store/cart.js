@@ -80,7 +80,7 @@ export const fetchCart = () => async (dispatch, getState) => {
 }
 
 // pull user from getState()
-export const addedToCart = (maskId, quantity, price) => async (
+export const addMaskToCart = (maskId, quantity, price) => async (
   dispatch,
   getState
 ) => {
@@ -92,7 +92,7 @@ export const addedToCart = (maskId, quantity, price) => async (
         price
       })
     }
-    dispatch(addToCart(maskId, quantity))
+    dispatch(addToCart(maskId, quantity, price))
   } catch (err) {
     console.error('Could not add to cart!')
     console.log(err)
@@ -117,29 +117,21 @@ export const updateCart = (maskId, quantity, price) => async (
   }
 }
 
-export const deleteFromCart = maskId => async (dispatch, getState) => {
+export const deleteFromCart = (maskId, quantity) => async (
+  dispatch,
+  getState
+) => {
   try {
     const {user} = getState()
     if (user.id) {
       await axios.delete(`/api/cart/${maskId}`)
     }
-    dispatch(removeFromCart(maskId))
+    dispatch(removeFromCart(maskId, quantity))
   } catch (err) {
     console.error('Could not delete mask from cart!')
     console.log(err)
   }
 }
-
-// export const deleteCart = cart => async (dispatch, getState) => {
-//   try {
-//     const {user} = getState()
-//     if (user.id) {
-//       // delete entire order
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
 /**
  * REDUCER
@@ -162,19 +154,16 @@ export default function(state = initialCart, action) {
 
     case UPDATE_CART:
       currentCart = {...state}
-      if (currentCart[action.maskId]) {
-        currentCart[action.maskId] = action.quantity
-        currentCart[action.price] = action.quantity * action.price
-      }
+      currentCart[action.maskId] = action.quantity
+      action.price = action.quantity * action.price
       return {...currentCart}
 
     case REMOVE_FROM_CART:
       currentCart = {...state}
-      if (currentCart[action.maskId]) {
-        if (action.quantity === 0) {
-          delete currentCart[action.maskId]
-        }
+      if (action.quantity === 0) {
+        delete currentCart[action.maskId]
       }
+      delete currentCart[action.maskId]
       return {...currentCart}
 
     case RESET_CART:

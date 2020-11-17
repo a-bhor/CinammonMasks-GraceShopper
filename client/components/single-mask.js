@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {fetchSingleMask} from '../store/singlemask'
-import {addedToCart} from '../store/cart'
+import {addMaskToCart} from '../store/cart'
 
 class SingleMask extends React.Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class SingleMask extends React.Component {
       let {maskId} = this.props.match.params
       let {quantity} = this.state
       let {price} = this.props.singleMask
+      console.log('THIS IS THE PRICE!', price)
       this.props.addToCart(maskId, quantity, price)
     } catch (error) {
       console.log(error)
@@ -98,7 +99,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadSingleMask: maskId => dispatch(fetchSingleMask(maskId)),
   addToCart: (maskId, quantity, price) =>
-    dispatch(addedToCart(maskId, quantity, price))
+    dispatch(addMaskToCart(maskId, quantity, price))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)
