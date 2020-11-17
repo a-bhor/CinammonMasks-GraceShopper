@@ -12,6 +12,8 @@ const adminOnly = (req, res, next) => {
         const err = new Error('401 Unauthorized')
         err.status = 401
         return next(err)
+      } else {
+        return next()
       }
     }
   } catch (error) {
