@@ -26,7 +26,12 @@ class AllMasks extends React.Component {
 
     return (
       <div className="allMasksContainter">
-        <Grid container spacing={1} className="allMasksContainer">
+        <Grid
+          container
+          spacing={2}
+          justify="center"
+          className="allMasksContainer"
+        >
           {masks.map(mask => (
             <Grid item xs={4} key={mask.id}>
               <Link to={`/masks/${mask.id}`}>

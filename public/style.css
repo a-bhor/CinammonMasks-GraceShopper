@@ -30,27 +30,38 @@ form div {
 }
 
 .singleMaskPreviewImg {
-  width: 30%;
-  height: 30%;
+  width: 60%;
+  height: 70%;
 }
 
 .allMasksContainer {
-  margin: 1em;
+  display: block;
+  margin-top: 3em;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .maskContainer {
   display: flex;
   margin: 3em;
   position: relative;
-  margin-right: 320px;
+  justify-content: center;
+  margin-right: 300px;
+  margin-left: 300px;
 }
 
 .maskInfo {
   display: flex;
   flex-direction: column;
+  max-width: 50%;
   margin-right: 50px;
   justify-content: space-around;
   margin-left: 150px;
+}
+
+.singleMaskImg {
+  max-width: 50%;
 }
 
 .qtyForCart {
@@ -58,6 +69,7 @@ form div {
   align-items: flex-end;
   font-size: 16px;
 }
+
 .appbar {
   font-family: 'Arial';
 }
