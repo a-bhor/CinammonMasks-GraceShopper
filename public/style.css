@@ -30,16 +30,28 @@ form div {
 }
 
 .singleMaskPreviewImg {
-  width: 60%;
-  height: 70%;
+  width: 100%;
+  height: auto;
 }
 
 .allMasksContainer {
-  display: block;
+  /* display: block; */
   margin-top: 3em;
-  position: relative;
+  /* position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
+  max-width: 1170px;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  padding: 28px;
+}
+
+.maskNamePrice {
+  display: flex;
+  justify-content: space-between;
 }
 
 .maskContainer {
