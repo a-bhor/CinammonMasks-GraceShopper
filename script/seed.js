@@ -49,7 +49,7 @@ const usersData = [
 
 const masksData = [
   {
-    name: 'Baggu',
+    name: 'Wavy Masks',
     description:
       'Our 3-pack of reusable face masks are machine washable and made from 100% Organic Quilter’s Cotton.',
     imageUrl:
@@ -59,7 +59,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Subrina H)',
+    name: 'Constellation Masks',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:
@@ -69,7 +69,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Jersey Tie Dye Mask)',
+    name: 'Jersey Masks',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:
@@ -79,7 +79,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'KES Peace Face Covering',
+    name: 'Peace Mask',
     description:
       'Peace Face Covering elastic ear loops (1mm) due to the dying process. \n All silk components use only 100% elongated fibre Mulberry Silk Charmeuse.',
     imageUrl:
@@ -89,7 +89,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Tanya',
+    name: 'Gingham Masks',
     description:
       'Cotton fabric, Pack of 3. Each mask will come pre-filled with one filter and 2 additional filters.',
     imageUrl:

@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid'
 import {fetchCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
-
 class AllMasks extends React.Component {
   constructor(props) {
     super(props)
@@ -26,23 +25,22 @@ class AllMasks extends React.Component {
     const {masks} = this.props
 
     return (
-      <div className="allMasksContainter">
-        <Grid container spacing={1} className="allMasksContainer">
+      <div className="allMasksContainer">
+        <Grid container spacing={2}>
           {masks.map(mask => (
             <Grid item xs={4} key={mask.id}>
               <Link to={`/masks/${mask.id}`}>
-
                 <img
                   className="singleMaskPreviewImg"
                   src={mask.imageUrl}
                   alt="single mask preview"
                 />
-
-                <h4>{mask.name}</h4>
-                <h5>{mask.style}</h5>
-                <h5>${mask.price.toFixed(2)}</h5>
+                <div className="maskNamePrice">
+                  <h4>{mask.name}</h4>
+                  <h5>${mask.price.toFixed(2)}</h5>
+                </div>
+                {/* <h5>{mask.style}</h5> */}
               </Link>
-
             </Grid>
           ))}
         </Grid>
