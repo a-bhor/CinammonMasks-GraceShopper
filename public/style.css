@@ -1,9 +1,11 @@
 body {
-  font-family: 'Hero New Hairline';
+  font-family: 'LFT Etica Mono';
+  font-size: 16px;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 label {
@@ -28,12 +30,48 @@ form div {
 }
 
 .singleMaskPreviewImg {
-  width: 30%;
-  height: 30%;
+  width: 100%;
+  height: auto;
 }
 
 .allMasksContainer {
-  margin: 1em;
+  /* display: block; */
+  margin-top: 3em;
+  /* position: relative;
+  display: flex;
+  justify-content: center; */
+  max-width: 1170px;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  padding: 28px;
+}
+
+.maskNamePrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.maskContainer {
+  margin: 3em;
+}
+
+.appbar {
+  font-family: 'Arial';
+}
+
+.cinnamon-header {
+  font-size: 50px;
+}
+
+.navbar {
+  display: inline-block;
+}
+
+.cinnamon-header {
+  font-size: 40px;
 }
 
 #shopping-cart {
