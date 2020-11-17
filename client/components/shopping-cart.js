@@ -3,19 +3,26 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {fetchCart, getMasks} from '../store'
-// import Grid from '@material-ui/core/Grid'
-
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import {fetchCart, getMasks, updateCart, deleteFromCart} from '../store'
+import CartDetails from './cart-details'
 
 export class ShoppingCart extends React.Component {
   constructor(props) {
     super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    const maskId = event.target.id
+    const newQty = parseInt(event.target.value)
+
+    if (newQty === 0) {
+      console.log('Calling delete from cart, qty = ', newQty)
+      this.props.deleteFromCart(maskId)
+    } else {
+      console.log('Calling update the cart, qty = ', newQty)
+      this.props.updateCart(maskId, newQty)
+    }
   }
 
   componentDidMount() {
@@ -49,38 +56,27 @@ export class ShoppingCart extends React.Component {
         0
       )
     }
-    console.log('cartDetails: ')
-    console.log(cartDetails)
-    console.log('total price: ', totalPrice)
 
     return (
-      <div>
+      <div id="shopping-cart">
         {cartDetails.length ? (
           <div>
-            <h3>{cartDetails.length} records in cart</h3>
-            {/* <CartDetails cartDetails={cartDetails}/> */}
-            <Paper>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Item</TableCell>
-                    <TableCell align="right">Qty.</TableCell>
-                    <TableCell align="right">Price</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {cartDetails.map(mask => (
-                    <TableRow key={mask.id}>
-                      <TableCell align="left">{mask.name}</TableCell>
-                      <TableCell align="right">{mask.quantity}</TableCell>
-                      <TableCell align="right">{mask.price}.00</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
-            {/* <Button> Checkout </Button>
-            <Button> Cancel</Button> */}
+            <CartDetails
+              cartDetails={cartDetails}
+              totalPrice={totalPrice}
+              handleChange={this.handleChange}
+            />
+            <Link to="/checkout">
+              <Button
+                size="large"
+                variant="contained"
+                type="submit"
+                style={{margin: '10px 100px'}}
+              >
+                Checkout
+              </Button>
+            </Link>
+            {/* <Button> Cancel</Button> */}
           </div>
         ) : (
           <div>
@@ -99,9 +95,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    getMasks: () => dispatch(getMasks())
-    // updateCart : () => dispatch(updateCart(maskId, quantity)),
-    // deleteFromCart: ()=> dispatch(deletFromCart(maskId))
+    getMasks: () => dispatch(getMasks()),
+    updateCart: (maskId, quantity) => dispatch(updateCart(maskId, quantity)),
+    deleteFromCart: maskId => dispatch(deleteFromCart(maskId))
   }
 }
 
