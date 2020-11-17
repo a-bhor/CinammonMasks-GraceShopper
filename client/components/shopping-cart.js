@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 import {fetchCart, getMasks, updateCart, deleteFromCart} from '../store'
 import CartDetails from './cart-details'
+import EmptyCart from './empty-cart'
 
 export class ShoppingCart extends React.Component {
   constructor(props) {
@@ -80,7 +81,7 @@ export class ShoppingCart extends React.Component {
           </div>
         ) : (
           <div>
-            <h3> Let's go shopping!</h3>{' '}
+            <EmptyCart />
           </div>
         )}
       </div>
