@@ -2,50 +2,64 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
+import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
-import HomeIcon from '@material-ui/icons/Home'
 import {logout} from '../store'
+import ShoppingCart from '@material-ui/icons/shoppingcart'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <AppBar position="static" color="inherit" aria-label="menu">
-      <Toolbar>
-        <h1>CINNAMON MASKS</h1>
-        <div>
-          <nav>
-            {isLoggedIn ? (
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
-                <Link to="/masks">Masks</Link>
-                <a href="#" onClick={handleClick}>
-                  Logout
-                </a>
-              </div>
-            ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/">
-                  {' '}
-                  <HomeIcon />
-                  HomePage
-                </Link>
-                <Link to="/masks">Masks</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/shopping-cart">
-                  <AddShoppingCartIcon size="3em" />
-                </Link>
-              </div>
-            )}
-          </nav>
-        </div>
-        <hr />
-      </Toolbar>
-    </AppBar>
+    <div className="appbar">
+      <AppBar position="static" color="inherit" aria-label="menu">
+        <Toolbar>
+          <div>
+            <Link to="/home">
+              <Button
+                color="inherit"
+                type="onSubmit"
+                className="cinnamon-header"
+              >
+                CINNAMON MASKS
+              </Button>
+            </Link>
+          </div>
+          <div>
+            <nav>
+              {isLoggedIn ? (
+                <div>
+                  {/* The navbar will show these links after you log in */}
+                  <Link to="/masks">Masks</Link>
+                  <a href="#" onClick={handleClick}>
+                    Logout
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/login">
+                    <Button color="default" type="onSubmit" className="login">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button color="default" type="onSubmit" className="signup">
+                      Sign Up
+                    </Button>
+                  </Link>
+                  <Link to="/shopping-cart">
+                    <Button>
+                      <ShoppingCart />
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </nav>
+          </div>
+          <hr />
+        </Toolbar>
+      </AppBar>
+    </div>
   </div>
 )
 

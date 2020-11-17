@@ -13,21 +13,18 @@ export const fetchSingleMask = maskId => async dispatch => {
   try {
     const {data: singleMask} = await axios.get(`/api/masks/${maskId}`)
     dispatch(setSingleMask(singleMask))
-    // console.log(singleMask)
   } catch (error) {
     console.error('Error fetching mask!')
     console.error(error)
   }
 }
 
-const initialState = {
-  singleMask: {}
-}
+const initialState = {}
 
 export default function maskReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SINGLE_MASK:
-      return {...state, singleMask: action.singleMask}
+      return {...state, ...action.singleMask}
     default:
       return state
   }
