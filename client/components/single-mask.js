@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {fetchSingleMask} from '../store/singlemask'
+import {addedToCart} from '../store/cart'
 
 class SingleMask extends React.Component {
   constructor(props) {
@@ -10,9 +11,8 @@ class SingleMask extends React.Component {
     this.state = {
       quantity: 0
     }
-    this.addMask = this.addMask.bind(this)
-    this.subtractMask = this.subtractMask.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -23,93 +23,82 @@ class SingleMask extends React.Component {
     }
   }
 
-  addMask() {
-    let qty = this.state.quantity
-    try {
-      this.setState({quantity: qty++})
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  subtractMask() {
-    let qty = this.state.quantity
-    try {
-      this.setState({quantity: qty--})
-    } catch (error) {
-      console.log(error)
-    }
+  handleChange(evt) {
+    const quantity = Number(evt.target.value)
+    this.setState({quantity})
   }
 
   addToCart() {
     try {
-      let maskId = this.props.match.params.maskId
-      let userId = this.props.match.params.userId
-      let qty = this.state.quantity
-      // will add addToCart
-      // this.props.addToCart(maskId, userId, qty)
+      let {maskId} = this.props.match.params
+      let {quantity} = this.state
+      let {price} = this.props.singleMask
+      this.props.addToCart(maskId, quantity, price)
     } catch (error) {
       console.log(error)
     }
   }
 
   render() {
-    const {singleMask} = this.props.singleMask
-    // console.log('INSIDE SINGLE MASK RENDER! -->', this.props.singleMask)
-    // need to figure out which button we're using for the quantity
-    // const { quantity } = this.state
+    const {handleChange} = this
+    const {singleMask} = this.props
 
     return (
       <div className="maskContainer">
-        <img className="singleMaskImg" src={singleMask.imageUrl} />
-        <h2>{singleMask.name}</h2>
-        <p>{singleMask.description}</p>
-        <p>{singleMask.price}</p>
-        <div className="btn-group">
-          <p>QTY</p>
-          <button type="button" onClick={this.addMask} className="addMask">
-            +
-          </button>
-          <button
-            type="button"
-            onClick={this.subtractMask}
-            className="subtractMask"
-          >
-            -
-          </button>
-          <form>
-            <TextField
-              id="standard-number"
-              label="Number"
-              type="number"
-              InputLabelProps={{shrink: true}}
-            />
-          </form>
+        <img
+          className="singleMaskImg"
+          src={singleMask.imageUrl}
+          width="350"
+          height="450"
+        />
+        <div className="maskInfo">
+          <h2>{singleMask.name}</h2>
+          <p>{singleMask.description}</p>
+          <p>${Number(singleMask.price).toFixed(2)}</p>
+          <div className="btn-group">
+            <form className="qtyForCart">
+              <p>QTY</p>
+              <TextField
+                id="standard-number"
+                type="number"
+                size="small"
+                InputProps={{
+                  inputProps: {
+                    max: 100,
+                    min: 0
+                  }
+                }}
+                onChange={handleChange}
+                InputLabelProps={{shrink: true}}
+              />
+            </form>
+          </div>
+          <div className="addToCartBtn">
+            <Button
+              variant="outlined"
+              color="secondary"
+              type="onSubmit"
+              onClick={this.addToCart}
+              className="addToCartBtn"
+            >
+              Add to cart
+            </Button>
+          </div>
         </div>
-        <Button
-          variant="outlined"
-          color="secondary"
-          type="onSubmit"
-          onClick={this.addToCart}
-          className="addToCart"
-        >
-          Add to cart
-        </Button>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  singleMask: state.singleMask
+  singleMask: state.singleMask,
+  userId: state.user.id
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadSingleMask: id => dispatch(fetchSingleMask(id))
-
-  // waiting on addToCart functionality
-  // addToCart: (id, userId, quantity) => dispatch(addToCart(id, userId, quantity))
-
+  loadSingleMask: maskId => dispatch(fetchSingleMask(maskId)),
+  addToCart: (maskId, quantity, price) =>
+    dispatch(addedToCart(maskId, quantity, price))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMask)
