@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, OrderDetail} = require('../db/models')
+const {Order} = require('../db/models')
 // const {User} = require('../db/models')
 
 // GET /api/cart
@@ -47,7 +47,8 @@ router.post('/:maskId', async (req, res, next) => {
     // First check if current cart (order) already has a record for the given mask
     // If yes, then we need to modify that record in "order-detail" table by increasing the quantity
     // If NO, then we need to add this mask to the current cart (order)
-    const maskId = parseInt(req.params.maskId) //parseInt was needed because hasMask was not working without it
+    // const maskId = parseInt(req.params.maskId) //parseInt was needed because hasMask was not working without it
+    const maskId = +req.params.maskId
     const cartHasMask = await cart.hasMask(maskId)
 
     if (cartHasMask) {
@@ -105,7 +106,7 @@ router.put('/:maskId', async (req, res, next) => {
 // DELETE /api/cart/:maskId
 router.delete('/:maskId', async (req, res, next) => {
   try {
-    const userId = 1 //req.user.id
+    const userId = req.user.id
     const cart = await Order.findOne({
       where: {
         isSubmitted: false,

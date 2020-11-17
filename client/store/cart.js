@@ -41,17 +41,15 @@ const addToCart = (maskId, quantity, price) => ({
   price
 })
 
-const updateCartQty = (maskId, quantity, price) => ({
+const updateCartQty = (maskId, quantity) => ({
   type: UPDATE_CART,
   maskId,
-  quantity,
-  price
+  quantity
 })
 
-const removeFromCart = (maskId, quantity) => ({
+const removeFromCart = maskId => ({
   type: REMOVE_FROM_CART,
-  maskId,
-  quantity
+  maskId
 })
 
 const resetCart = cart => ({type: RESET_CART, cart})
@@ -68,9 +66,11 @@ export const fetchCart = () => async (dispatch, getState) => {
      *  ARCHANA: have commented out following if condition check for user.id because navbar is not set properly and hence there is no way of testing it
      * Once we have navbar working fine, we need to make sure logged in user check is incorporated.
      */
-    // if (user.id) {
-    const {data: cart} = await axios.get('/api/cart')
-    // }
+    let cart = {}
+    if (user.id) {
+      const {data} = await axios.get('/api/cart')
+      cart = data
+    }
     // console.log('fetched cart : ', cart)
 
     dispatch(setCart(cart))
@@ -79,7 +79,6 @@ export const fetchCart = () => async (dispatch, getState) => {
   }
 }
 
-// pull user from getState()
 export const addMaskToCart = (maskId, quantity, price) => async (
   dispatch,
   getState
@@ -99,10 +98,7 @@ export const addMaskToCart = (maskId, quantity, price) => async (
   }
 }
 
-export const updateCart = (maskId, quantity, price) => async (
-  dispatch,
-  getState
-) => {
+export const updateCart = (maskId, quantity) => async (dispatch, getState) => {
   try {
     const {user} = getState()
     if (user.id) {
@@ -110,23 +106,20 @@ export const updateCart = (maskId, quantity, price) => async (
         quantity
       })
     }
-    dispatch(updateCartQty(maskId, quantity, price))
+    dispatch(updateCartQty(maskId, quantity))
   } catch (err) {
     console.error('Could not update cart!')
     console.log(err)
   }
 }
 
-export const deleteFromCart = (maskId, quantity) => async (
-  dispatch,
-  getState
-) => {
+export const deleteFromCart = maskId => async (dispatch, getState) => {
   try {
     const {user} = getState()
     if (user.id) {
       await axios.delete(`/api/cart/${maskId}`)
     }
-    dispatch(removeFromCart(maskId, quantity))
+    dispatch(removeFromCart(maskId))
   } catch (err) {
     console.error('Could not delete mask from cart!')
     console.log(err)
@@ -138,12 +131,12 @@ export const deleteFromCart = (maskId, quantity) => async (
  */
 export default function(state = initialCart, action) {
   switch (action.type) {
-    case SET_CART:
-      console.log('inside reducer, initialCart is : ', state)
+    case SET_CART: {
+      // console.log('inside reducer, initialCart is : ', state)
       return {...state, ...action.cart}
-
-    case ADD_TO_CART:
-      let currentCart = {...state}
+    }
+    case ADD_TO_CART: {
+      const currentCart = {...state}
       if (currentCart[action.maskId]) {
         let previousQty = currentCart[action.maskId]
         currentCart[action.maskId] = previousQty + action.quantity
@@ -151,26 +144,20 @@ export default function(state = initialCart, action) {
         currentCart[action.maskId] = action.quantity
       }
       return {...currentCart}
-
-    case UPDATE_CART:
-      currentCart = {...state}
+    }
+    case UPDATE_CART: {
+      const currentCart = {...state}
       currentCart[action.maskId] = action.quantity
-      action.price = action.quantity * action.price
       return {...currentCart}
-
-    case REMOVE_FROM_CART:
-      currentCart = {...state}
-      if (action.quantity === 0) {
-        delete currentCart[action.maskId]
-      }
+    }
+    case REMOVE_FROM_CART: {
+      const currentCart = {...state}
       delete currentCart[action.maskId]
       return {...currentCart}
-
-    case RESET_CART:
-      currentCart = {...state}
-      currentCart = {}
-      return {...currentCart}
-
+    }
+    case RESET_CART: {
+      return {}
+    }
     default:
       return state
   }
