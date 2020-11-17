@@ -8,9 +8,13 @@ import {me} from './store'
 import ShoppingCart from './components/shopping-cart'
 import SingleMask from './components/single-mask'
 import AllMasks from './components/all-masks'
+import About from './components/about'
+import Contact from './components/contact'
+import FaceBook from './components/facebook'
 /**
  * COMPONENT
  */
+
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -24,10 +28,13 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/masks" component={AllMasks} />
         <Route exact path="/masks/:maskId" component={SingleMask} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/facebook" component={FaceBook} />
+        <Route path="/shopping-cart" component={ShoppingCart} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route path="/shopping-cart" component={ShoppingCart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

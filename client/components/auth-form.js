@@ -19,14 +19,16 @@ import Container from '@material-ui/core/Container'
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <div className="copy-write">
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Cinnamon Masks
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    </div>
   )
 }
 
@@ -53,7 +55,6 @@ const useStyles = makeStyles(theme => ({
 const AuthForm = props => {
   const classes = useStyles()
   const {name, displayName, handleSubmit, error} = props
-  console.log('the name: ', name)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -108,14 +109,14 @@ const AuthForm = props => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </Link> */}
             </Grid>
           </Grid>
         </form>

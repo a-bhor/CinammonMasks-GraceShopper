@@ -35,3 +35,18 @@ form div {
 .allMasksContainer {
   margin: 1em;
 }
+
+.copy-write {
+  margin: 6em;
+  padding: 1em;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+}
+
+/* .footer{
+  display: flex;
+  justify-content: center; 
+} */
