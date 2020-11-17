@@ -73,3 +73,15 @@ form div {
 .cinnamon-header {
   font-size: 40px;
 }
+
+.totalpricecheckout {
+  font-size: 36px;
+}
+
+.checkoutContainer {
+  margin: 4em;
+  text-align: left;
+}
+
+.payment {
+}
