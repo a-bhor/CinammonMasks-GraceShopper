@@ -2,11 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Button
-} from '@material-ui/core'
+import {BottomNavigation, BottomNavigationAction} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import InfoIcon from '@material-ui/icons/Info'
 import ContactsIcon from '@material-ui/icons/Contacts'
@@ -24,6 +20,7 @@ export function Footer() {
   return (
     <AppBar
       className="footer"
+      justify="center"
       position="fixed"
       alignitems="center"
       color="transparent"
@@ -31,6 +28,7 @@ export function Footer() {
     >
       <BottomNavigation
         alignitems="center"
+        justify="center"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue)

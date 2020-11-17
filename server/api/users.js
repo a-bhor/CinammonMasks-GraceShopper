@@ -17,15 +17,15 @@ router.get('/', async (req, res, next) => {
 })
 
 //POST /api/users
-router.post('/', async (req, res, next) => {
-  try {
-    const {email, password} = req.body
-    const newUser = await User.create({
-      email,
-      password
-    })
-    res.json(newUser)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const {email, password} = req.body
+//     const newUser = await User.create({
+//       email,
+//       password
+//     })
+//     res.json(newUser)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
