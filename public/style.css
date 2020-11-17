@@ -1,5 +1,5 @@
 body {
-  font-family: 'Hero New Hairline';
+  font-family: 'LFT Etica Mono';
 }
 
 a {
@@ -34,4 +34,16 @@ form div {
 
 .allMasksContainer {
   margin: 1em;
+}
+
+.totalpricecheckout {
+  font-size: 36px;
+}
+
+.checkoutContainer {
+  margin: 4em;
+  text-align: left;
+}
+
+.payment {
 }
