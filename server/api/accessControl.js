@@ -19,4 +19,6 @@ const adminOnly = (req, res, next) => {
   }
 }
 
+//only users can access this route if they are the owner of
+
 module.exports = adminOnly
