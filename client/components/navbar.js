@@ -35,7 +35,7 @@ const Navbar = ({logOut, isLoggedIn}) => {
           <Toolbar className="navbar">
             <nav>
               {/* Shop Header ........ */}
-              <Link to="/home">
+              <Link to="/">
                 <Button
                   color="inherit"
                   type="onSubmit"
