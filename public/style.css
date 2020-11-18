@@ -12,7 +12,6 @@ label {
   display: block;
 }
 
-
 .iconsright {
   position: absolute;
   right: 50px;
@@ -30,7 +29,6 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
 
 form div {
   margin: 1em;
@@ -50,11 +48,7 @@ form div {
 }
 
 .allMasksContainer {
-  /* display: block; */
   margin-top: 3em;
-  /* position: relative;
-  display: flex;
-  justify-content: center; */
   max-width: 1170px;
   margin: 0 auto;
   margin-top: 3em;
@@ -98,7 +92,7 @@ form div {
 }
 
 .appbar {
-  font-family: 'Arial';
+  font-family: 'Roboto';
 }
 
 .cinnamon-header {
@@ -121,7 +115,6 @@ form div {
   margin-bottom: 2vw;
 }
 
-
 #order-complete {
   display: flex;
   flex-direction: column;
@@ -132,12 +125,14 @@ form div {
 #order-complete-img {
   width: 30%;
   height: 30%;
-=======
+}
+
 nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 nav a {
   display: inline-block;
   margin: 1em;
