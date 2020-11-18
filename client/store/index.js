@@ -14,6 +14,12 @@ const middleware = composeWithDevTools(
 )
 const store = createStore(reducer, middleware)
 
+store.subscribe(() => {
+  if (!store.getState().user.id) {
+    localStorage.setItem('localCart', JSON.stringify(store.getState().cart))
+  }
+})
+
 export default store
 export * from './user'
 export * from './all-masks'
