@@ -19,14 +19,16 @@ import Container from '@material-ui/core/Container'
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <div className="copy-write">
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Cinnamon Masks
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    </div>
   )
 }
 
@@ -50,10 +52,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const AuthForm = props => {
+const LogInForm = props => {
   const classes = useStyles()
   const {name, displayName, handleSubmit, error} = props
-  console.log('the name: ', name)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -108,14 +109,117 @@ const AuthForm = props => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </Link> */}
+            </Grid>
+          </Grid>
+        </form>
+        <a href="/auth/google">{displayName} with Google</a>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  )
+}
+
+const SignInForm = props => {
+  const classes = useStyles()
+  const {name, displayName, handleSubmit, error} = props
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          {name}
+        </Typography>
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit}
+          name={name}
+          noValidate
+        >
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="firstname"
+            label="First Name"
+            type="firstname"
+            id="firstname"
+            autoComplete="firstname"
+          />
+
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="lastname"
+            label="Last Name"
+            type="lastname"
+            id="lastname"
+            autoComplete="lastname"
+          />
+
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {displayName}
+          </Button>
+
+          <Grid container>
+            <Grid item xs>
+              {/* <Link href="#" variant="body2">
+                Forgot password?
+              </Link> */}
+            </Grid>
+            <Grid item>
+              {/* <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link> */}
             </Grid>
           </Grid>
         </form>
@@ -137,25 +241,26 @@ const AuthForm = props => {
  */
 const mapLogin = state => {
   return {
-    name: 'Login',
-    displayName: 'Login',
+    name: 'login',
+    displayName: 'login',
     error: state.user.error
   }
 }
 
 const mapSignup = state => {
   return {
-    name: 'Sign Up',
-    displayName: 'Sign Up',
+    name: 'signup',
+    displayName: 'signup',
     error: state.user.error
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToLogin = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
+      console.log('formName', formName)
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
@@ -163,13 +268,34 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+const mapDispatchToSignup = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      console.log('formName', formName)
+      const firstName = evt.target.firstname.value
+      const lastName = evt.target.lastname.value
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(auth(email, password, formName, firstName, lastName))
+    }
+  }
+}
+export const Login = connect(mapLogin, mapDispatchToLogin)(LogInForm)
+export const Signup = connect(mapSignup, mapDispatchToSignup)(SignInForm)
 
 /**
  * PROP TYPES
  */
-AuthForm.propTypes = {
+LogInForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  error: PropTypes.object
+}
+
+SignInForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
