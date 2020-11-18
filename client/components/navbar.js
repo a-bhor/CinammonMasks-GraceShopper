@@ -35,7 +35,7 @@ const Navbar = ({logOut, isLoggedIn}) => {
           <Toolbar className="navbar">
             <nav>
               {/* Shop Header ........ */}
-              <Link to="/home">
+              <Link to="/">
                 <Button
                   color="inherit"
                   type="onSubmit"
@@ -44,8 +44,9 @@ const Navbar = ({logOut, isLoggedIn}) => {
                   CINNAMON MASKS
                 </Button>
               </Link>
-              <div>
+              <div id="navbar-right">
                 {/* Navbar Menu ........ */}
+                <Link to="/">MASKS</Link>
                 <Button
                   aria-controls="navbar-menu"
                   aria-haspopup="true"

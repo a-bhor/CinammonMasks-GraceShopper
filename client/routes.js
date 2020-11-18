@@ -23,7 +23,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/home" component={AllMasks} />
+        <Route exact path="/" component={AllMasks} />
         <Route exact path="/masks/:maskId" component={SingleMask} />
         <Route exact path="/checkout" component={Checkout} />
 
