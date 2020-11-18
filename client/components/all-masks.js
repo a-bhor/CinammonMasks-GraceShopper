@@ -26,13 +26,7 @@ class AllMasks extends React.Component {
 
   componentDidMount() {
     this.props.fetchMasks()
-    /**
-     * ARCHANA: Review placemen of loadCart().
-     * We may or may not have to load the cart in AllMasks
-     */
-    // console.log('Calling the fetchCart to test')
     this.props.loadCart()
-    // console.log('cart loaded')
   }
 
   render() {
@@ -54,7 +48,6 @@ class AllMasks extends React.Component {
                   <h4>{mask.name}</h4>
                   <h5>${mask.price.toFixed(2)}</h5>
                 </div>
-                {/* <h5>{mask.style}</h5> */}
               </Link>
               <div className="add-masks-cart">
                 <Button
