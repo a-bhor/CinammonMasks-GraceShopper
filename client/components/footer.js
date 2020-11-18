@@ -7,34 +7,23 @@ import InfoIcon from '@material-ui/icons/Info'
 import ContactsIcon from '@material-ui/icons/Contacts'
 import FacebookIcon from '@material-ui/icons/Facebook'
 
-const useStyles = makeStyles({
-  root: {
-    width: 500
-  }
-})
-
 export function Footer() {
-  const classes = useStyles()
   const [value, setValue] = React.useState(0)
   return (
-    <AppBar
-      position="fixed"
-      color="transparent"
-      style={{top: 'auto', bottom: 0}}
-    >
+    <div className="footerfooter">
       <BottomNavigation
+        color="inherit"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue)
         }}
         showLabels
-        className={classes.root}
       >
         <BottomNavigationAction label="About Us" icon={<InfoIcon />} />
         <BottomNavigationAction label="Contact" icon={<ContactsIcon />} />
         <BottomNavigationAction label="FaceBook" icon={<FacebookIcon />} />
       </BottomNavigation>
-    </AppBar>
+    </div>
   )
 }
 

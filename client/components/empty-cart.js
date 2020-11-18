@@ -9,8 +9,8 @@ const EmptyCart = () => {
       <center>
         <h3>
           Click{' '}
-          <Link to="/masks">
-            <u> here </u>
+          <Link to="/">
+            <u>here </u>
           </Link>
           to continue shopping
         </h3>

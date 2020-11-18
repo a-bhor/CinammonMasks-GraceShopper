@@ -77,7 +77,6 @@ export class ShoppingCart extends React.Component {
                 Checkout
               </Button>
             </Link>
-            {/* <Button> Cancel</Button> */}
           </div>
         ) : (
           <div>
