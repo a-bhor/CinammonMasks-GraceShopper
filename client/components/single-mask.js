@@ -9,7 +9,7 @@ class SingleMask extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: 0
+      quantity: 1
     }
     this.addToCart = this.addToCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -24,8 +24,14 @@ class SingleMask extends React.Component {
   }
 
   handleChange(evt) {
-    const quantity = Number(evt.target.value)
-    this.setState({quantity})
+    if (evt.target.value > 0) {
+      const quantity = Number(evt.target.value)
+
+      this.setState({quantity})
+      console.log(this.state.quantity)
+    } else {
+      this.setState({quantity: 0})
+    }
   }
 
   addToCart() {
@@ -33,7 +39,6 @@ class SingleMask extends React.Component {
       let {maskId} = this.props.match.params
       let {quantity} = this.state
       let {price} = this.props.singleMask
-      console.log('THIS IS THE PRICE!', price)
       this.props.addToCart(maskId, quantity, price)
     } catch (error) {
       console.log(error)
@@ -63,10 +68,13 @@ class SingleMask extends React.Component {
                 id="standard-number"
                 type="number"
                 size="small"
+                helperText={this.state.errorText}
+                defaultValue="1"
                 InputProps={{
+                  inputMode: 'numeric',
                   inputProps: {
                     max: 100,
-                    min: 0
+                    min: 1
                   }
                 }}
                 onChange={handleChange}
@@ -79,6 +87,7 @@ class SingleMask extends React.Component {
               variant="outlined"
               color="secondary"
               type="onSubmit"
+              disabled={!(this.state.quantity > 0)}
               onClick={this.addToCart}
               className="addToCartBtn"
             >

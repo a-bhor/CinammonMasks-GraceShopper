@@ -44,7 +44,9 @@ const Navbar = ({logOut, isLoggedIn}) => {
                   CINNAMON MASKS
                 </Button>
               </Link>
-              <div id="navbar-right">
+
+              <div className="iconsright">
+
                 {/* Navbar Menu ........ */}
                 <Link to="/">MASKS</Link>
                 <Button
