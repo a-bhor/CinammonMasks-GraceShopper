@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import ShoppingCart from '@material-ui/icons/shoppingcart'
+// import ShoppingCart from '@material-ui/icons/shoppingcart'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
@@ -46,7 +47,6 @@ const Navbar = ({logOut, isLoggedIn}) => {
               </Link>
 
               <div className="iconsright">
-
                 {/* Navbar Menu ........ */}
                 <Link to="/">MASKS</Link>
                 <Button
@@ -85,7 +85,7 @@ const Navbar = ({logOut, isLoggedIn}) => {
                 </Menu>
                 <Link to="/shopping-cart">
                   <Button>
-                    <ShoppingCart />
+                    <ShoppingCartIcon />
                   </Button>
                 </Link>
               </div>
