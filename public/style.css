@@ -12,6 +12,19 @@ label {
   display: block;
 }
 
+.iconsright {
+  position: absolute;
+  right: 50px;
+  text-align: right;
+  margin-top: 2em;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
@@ -88,10 +101,6 @@ form div {
 
 .cinnamon-header {
   font-size: 50px;
-}
-
-.navbar {
-  display: inline-block;
 }
 
 .totalpricecheckout {
