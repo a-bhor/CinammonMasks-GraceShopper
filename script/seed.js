@@ -49,7 +49,7 @@ const usersData = [
 
 const masksData = [
   {
-    name: 'Wavy Masks',
+    name: 'Wavy Set',
     description:
       'Our 3-pack of reusable face masks are machine washable and made from 100% Organic Quilter’s Cotton.',
     imageUrl:
@@ -59,7 +59,7 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Constellation Masks',
+    name: 'Constellation Set',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:
@@ -69,13 +69,53 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Jersey Masks',
+    name: 'Jersey Set',
     description:
       'Our non-medical Covid-19 masks are made locally in Overland Park, KS with 100% Liberty of London cotton fabric and 100% washed cotton muslin lining.',
     imageUrl:
       'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Daisy_Set_01_3af429a3-abb2-4e36-b1bf-2df45f65ce74_1280x1600_crop_center.progressive.jpg?v=1600209338',
     style: FLORAL_STYLE,
     price: 27,
+    inventoryQty: 50
+  },
+  {
+    name: 'Gingham Set',
+    description:
+      'Cotton fabric, Pack of 3. Each mask will come pre-filled with one filter and 2 additional filters.',
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Leopard_Set_01_08e65d4c-0a94-4c35-a1f6-e7b1b7aeef14_1280x1600_crop_center.progressive.jpg?v=1601943528',
+    style: PATTERNED_STYLE,
+    price: 45,
+    inventoryQty: 50
+  },
+  {
+    name: 'Cactus Set',
+    description:
+      'Our 3-pack of reusable face masks are machine washable and made from 100% Organic Quilter’s Cotton.',
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Cactus_Set_01_6847a643-7732-4456-86cf-e2cd356bfd23_800x1000_crop_center.progressive.jpg?v=1600969910',
+    style: SOLID_STYLE,
+    price: 45,
+    inventoryQty: 50
+  },
+  {
+    name: 'Twilight Set',
+    description:
+      'Our 3-pack of reusable face masks are machine washable and made from 100% Organic Quilter’s Cotton.',
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Twilight_Set_01_e265d1c3-8414-47a9-84da-51520931242c_800x1000_crop_center.progressive.jpg?v=1600208827',
+    style: SOLID_STYLE,
+    price: 45,
+    inventoryQty: 50
+  },
+  {
+    name: 'Earth Set',
+    description:
+      'Our 3-pack of reusable face masks are machine washable and made from 100% Organic Quilter’s Cotton.',
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Clay_Set_01_ee723418-dae4-4308-a021-3b39c29a304c_800x1000_crop_center.progressive.jpg?v=1600209593',
+    style: SOLID_STYLE,
+    price: 45,
     inventoryQty: 50
   },
   {
@@ -89,13 +129,23 @@ const masksData = [
     inventoryQty: 50
   },
   {
-    name: 'Gingham Masks',
+    name: 'Tangerine Mask',
     description:
-      'Cotton fabric, Pack of 3. Each mask will come pre-filled with one filter and 2 additional filters.',
+      'Tangerine Face Covering elastic ear loops (1mm) due to the dying process. \n All silk components use only 100% elongated fibre Mulberry Silk Charmeuse.',
     imageUrl:
-      'https://cdn.shopify.com/s/files/1/0851/3262/products/Ear_Loop_Mask_Cotton_Leopard_Set_01_08e65d4c-0a94-4c35-a1f6-e7b1b7aeef14_1280x1600_crop_center.progressive.jpg?v=1601943528',
+      'https://cdn.shopify.com/s/files/1/0501/1669/products/038-13UMSK1_TANGERINETYEDIE_2_900x.jpg?v=1590025849',
     style: PATTERNED_STYLE,
-    price: 45,
+    price: 15,
+    inventoryQty: 50
+  },
+  {
+    name: 'Blue Skies Mask',
+    description:
+      'Blue Skies Face Covering elastic ear loops (1mm) due to the dying process. \n All silk components use only 100% elongated fibre Mulberry Silk Charmeuse.',
+    imageUrl:
+      'https://cdn.shopify.com/s/files/1/0501/1669/products/038-13UMSK1_BLUETYEDIE_2_900x.jpg?v=1590025837',
+    style: PATTERNED_STYLE,
+    price: 15,
     inventoryQty: 50
   }
 ]

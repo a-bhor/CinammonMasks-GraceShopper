@@ -14,32 +14,17 @@ label {
 
 .iconsright {
   position: absolute;
-  right: 50px;
-  text-align: right;
-  margin-top: 2em;
-}
-
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  right: 40px;
+  margin-top: 0.5em;
 }
 
 nav a {
   display: inline-block;
-  margin: 1em;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
-}
-
-.main-footer {
-  display: flex;
-  margin: 1em;
-  display: inline-block;
-  justify-content: center;
 }
 
 .singleMaskPreviewImg {
@@ -48,7 +33,6 @@ form div {
 }
 
 .allMasksContainer {
-  margin-top: 3em;
   max-width: 1170px;
   margin: 0 auto;
   margin-top: 3em;
@@ -65,7 +49,7 @@ form div {
 
 .maskContainer {
   display: flex;
-  margin: 3em;
+  margin-top: 4em;
   position: relative;
   justify-content: center;
   margin-right: 300px;
@@ -78,7 +62,7 @@ form div {
   max-width: 50%;
   margin-right: 50px;
   justify-content: space-around;
-  margin-left: 150px;
+  margin-left: 120px;
 }
 
 .singleMaskImg {
@@ -92,10 +76,12 @@ form div {
 }
 
 .appbar {
-  font-family: 'Roboto';
+  font-family: 'Semplicita Pro';
+  font-size: 20px;
 }
 
 .cinnamon-header {
+  font-family: 'Semplicita Pro';
   font-size: 50px;
 }
 
@@ -123,8 +109,9 @@ form div {
 }
 
 #order-complete-img {
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
+  border: 5px solid #fa27de;
 }
 
 nav {
@@ -133,14 +120,13 @@ nav {
   justify-content: space-between;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+.footerfooter {
+  margin-top: calc(5% + 600px);
+  bottom: 0;
+  width: 100%;
 }
 
-#navbar-right {
-  position: absolute;
-  right: 50px;
-  text-align: right;
-  margin-top: 2em;
+.welcomepage {
+  margin-top: 3em;
+  text-align: center;
 }

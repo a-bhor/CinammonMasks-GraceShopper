@@ -46,9 +46,20 @@ const Navbar = ({logOut, isLoggedIn}) => {
               </Link>
 
               <div className="iconsright">
-
                 {/* Navbar Menu ........ */}
-                <Link to="/">MASKS</Link>
+                <Link to="/">
+                  <Button
+                    size="medium"
+                    color="inherit"
+                    type="onSubmit"
+                    style={{
+                      fontSize: '16px'
+                    }}
+                  >
+                    <h4>MASKS</h4>
+                  </Button>
+                </Link>
+                {/* <Link to="/"><h4>MASKS</h4></Link> */}
                 <Button
                   aria-controls="navbar-menu"
                   aria-haspopup="true"
@@ -113,6 +124,7 @@ const mapDispatch = dispatch => {
   }
 }
 export default connect(mapState, mapDispatch)(Navbar)
+
 /**
  * PROP TYPES
  */
