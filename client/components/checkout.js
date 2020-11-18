@@ -55,7 +55,7 @@ class Checkout extends React.Component {
     return (
       <div className="checkoutContainer">
         <React.Fragment>
-          <div className="totalpricecheckout">Your total: $$price$$</div>
+          <div className="totalpricecheckout" />
           <p />
           <h2>Shipping Address</h2>
           <p />

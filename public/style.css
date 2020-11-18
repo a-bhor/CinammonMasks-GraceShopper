@@ -121,7 +121,12 @@ nav {
 }
 
 .footerfooter {
-  margin-top: calc(5% + 200px);
+  margin-top: calc(5% + 600px);
   bottom: 0;
   width: 100%;
+}
+
+.welcomepage {
+  margin-top: 3em;
+  text-align: center;
 }
