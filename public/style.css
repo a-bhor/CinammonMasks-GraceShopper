@@ -112,6 +112,8 @@ nav a {
 }
 
 #navbar-right {
+  position: absolute;
+  right: 50px;
+  text-align: right;
   margin-top: 2em;
-  margin-left: 600px;
 }
