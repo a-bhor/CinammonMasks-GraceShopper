@@ -9,6 +9,7 @@ import ShoppingCart from './components/shopping-cart'
 import SingleMask from './components/single-mask'
 import AllMasks from './components/all-masks'
 import Checkout from './components/checkout'
+import OrderComplete from './components/order-complete'
 /**
  * COMPONENT
  */
@@ -26,6 +27,7 @@ class Routes extends Component {
         <Route exact path="/" component={AllMasks} />
         <Route exact path="/masks/:maskId" component={SingleMask} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/ordercomplete" component={OrderComplete} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

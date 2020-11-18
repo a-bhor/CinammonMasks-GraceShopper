@@ -101,6 +101,18 @@ form div {
   margin-bottom: 2vw;
 }
 
+
+#order-complete {
+  display: flex;
+  flex-direction: column;
+  margin-left: 38%;
+  padding-top: 80px;
+}
+
+#order-complete-img {
+  width: 30%;
+  height: 30%;
+=======
 nav {
   display: flex;
   flex-direction: row;
