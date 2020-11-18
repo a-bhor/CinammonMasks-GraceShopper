@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {fetchSingleMask} from '../store/singlemask'
 import {addMaskToCart} from '../store/cart'
-import Input from '@material-ui/core/Input'
 
 class SingleMask extends React.Component {
   constructor(props) {
