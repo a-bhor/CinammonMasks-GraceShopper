@@ -12,6 +12,7 @@ label {
   display: block;
 }
 
+
 .iconsright {
   position: absolute;
   right: 50px;
@@ -29,6 +30,7 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+
 
 form div {
   margin: 1em;
@@ -117,4 +119,33 @@ form div {
   margin-left: 2vw;
   margin-right: 2vw;
   margin-bottom: 2vw;
+}
+
+
+#order-complete {
+  display: flex;
+  flex-direction: column;
+  margin-left: 38%;
+  padding-top: 80px;
+}
+
+#order-complete-img {
+  width: 30%;
+  height: 30%;
+=======
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+#navbar-right {
+  position: absolute;
+  right: 50px;
+  text-align: right;
+  margin-top: 2em;
 }
