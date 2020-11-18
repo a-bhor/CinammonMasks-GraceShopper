@@ -4,10 +4,24 @@ import {getMasks} from '../store/all-masks'
 import Grid from '@material-ui/core/Grid'
 import {fetchCart} from '../store/cart'
 import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import {addMaskToCart} from '../store/cart'
 
 class AllMasks extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      quantity: 1
+    }
+    this.addToCart = this.addToCart.bind(this)
+  }
+
+  addToCart(maskId, quantity, price) {
+    try {
+      this.props.addToCart(maskId, quantity, price)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   componentDidMount() {
@@ -23,6 +37,7 @@ class AllMasks extends React.Component {
 
   render() {
     const {masks} = this.props
+    let {quantity} = this.state
 
     return (
       <div className="allMasksContainer">
@@ -41,6 +56,22 @@ class AllMasks extends React.Component {
                 </div>
                 {/* <h5>{mask.style}</h5> */}
               </Link>
+              <div className="add-masks-cart">
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  type="onSubmit"
+                  onClick={() => this.addToCart(mask.id, quantity, mask.price)}
+                  className="addToCartBtn"
+                  style={{
+                    maxWidth: '105px',
+                    maxHeight: '40px',
+                    fontSize: '10px'
+                  }}
+                >
+                  Add to cart
+                </Button>
+              </div>
             </Grid>
           ))}
         </Grid>
@@ -55,7 +86,9 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchMasks: () => dispatch(getMasks()),
-  loadCart: () => dispatch(fetchCart())
+  loadCart: () => dispatch(fetchCart()),
+  addToCart: (maskId, quantity, price) =>
+    dispatch(addMaskToCart(maskId, quantity, price))
 })
 
 export default connect(mapState, mapDispatch)(AllMasks)

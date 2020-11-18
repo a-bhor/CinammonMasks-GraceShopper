@@ -35,11 +35,7 @@ form div {
 }
 
 .allMasksContainer {
-  /* display: block; */
   margin-top: 3em;
-  /* position: relative;
-  display: flex;
-  justify-content: center; */
   max-width: 1170px;
   margin: 0 auto;
   margin-top: 3em;
@@ -83,7 +79,7 @@ form div {
 }
 
 .appbar {
-  font-family: 'Arial';
+  font-family: 'Roboto';
 }
 
 .cinnamon-header {
