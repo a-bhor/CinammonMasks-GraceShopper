@@ -12,11 +12,6 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
@@ -90,10 +85,6 @@ form div {
   font-size: 50px;
 }
 
-.navbar {
-  display: inline-block;
-}
-
 .totalpricecheckout {
   font-size: 36px;
 }
@@ -110,6 +101,7 @@ form div {
   margin-bottom: 2vw;
 }
 
+
 #order-complete {
   display: flex;
   flex-direction: column;
@@ -120,4 +112,20 @@ form div {
 #order-complete-img {
   width: 30%;
   height: 30%;
+=======
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+#navbar-right {
+  position: absolute;
+  right: 50px;
+  text-align: right;
+  margin-top: 2em;
 }

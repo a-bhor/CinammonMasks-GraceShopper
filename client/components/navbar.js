@@ -44,8 +44,9 @@ const Navbar = ({logOut, isLoggedIn}) => {
                   CINNAMON MASKS
                 </Button>
               </Link>
-              <div>
+              <div id="navbar-right">
                 {/* Navbar Menu ........ */}
+                <Link to="/">MASKS</Link>
                 <Button
                   aria-controls="navbar-menu"
                   aria-haspopup="true"
