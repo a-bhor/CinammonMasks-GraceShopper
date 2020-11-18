@@ -15,18 +15,17 @@ const RESET_CART = 'RESET_CART'
  */
 // ARCHANA:
 // Our cart (when filled) would look something like this:
-//
-// [
-//   {mask1 details (it will include ALL the details of give mask from masks table), mask1.order-detail(it will have order id, quantity, price etc)}
-//   {mask2 details , mask2.order-detail}
-//   and so on
-// ]
+// {
+//   maskId1: quantity,
+//   maskId2: quantity
+// }
 
 /**
  ARCHANA: following code will be required for making cart persistent within session for the GUEST users
  */
-const initialCart = localStorage.getItem('cart')
-  ? JSON.parse(localStorage.getItem('cart'))
+// const initialCart = {}
+const initialCart = localStorage.getItem('localCart')
+  ? JSON.parse(localStorage.getItem('localCart'))
   : {}
 
 /**
@@ -52,7 +51,7 @@ const removeFromCart = maskId => ({
   maskId
 })
 
-const resetCart = cart => ({type: RESET_CART, cart})
+export const resetCart = () => ({type: RESET_CART})
 
 /**
  * THUNK CREATORS
@@ -60,20 +59,15 @@ const resetCart = cart => ({type: RESET_CART, cart})
 export const fetchCart = () => async (dispatch, getState) => {
   try {
     const {user} = getState()
-    // console.log('inside fetchCart thunk, User is: ', user)
-
     /**
      *  ARCHANA: have commented out following if condition check for user.id because navbar is not set properly and hence there is no way of testing it
      * Once we have navbar working fine, we need to make sure logged in user check is incorporated.
      */
-    let cart = {}
-    if (user.id) {
-      const {data} = await axios.get('/api/cart')
-      cart = data
-    }
-    // console.log('fetched cart : ', cart)
 
-    dispatch(setCart(cart))
+    if (user.id) {
+      const {data: cart} = await axios.get('/api/cart')
+      dispatch(setCart(cart))
+    }
   } catch (err) {
     console.error(err)
   }
@@ -132,8 +126,8 @@ export const deleteFromCart = maskId => async (dispatch, getState) => {
 export default function(state = initialCart, action) {
   switch (action.type) {
     case SET_CART: {
-      // console.log('inside reducer, initialCart is : ', state)
-      return {...state, ...action.cart}
+      // return {...state, ...action.cart}
+      return action.cart
     }
     case ADD_TO_CART: {
       const currentCart = {...state}
@@ -156,6 +150,7 @@ export default function(state = initialCart, action) {
       return {...currentCart}
     }
     case RESET_CART: {
+      localStorage.setItem('localCart', JSON.stringify({}))
       return {}
     }
     default:

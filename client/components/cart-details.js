@@ -22,41 +22,12 @@ const useStyles = makeStyles({
     minWidth: 700,
     maxWidth: 1200,
     alignContent: 'start'
-    // margin: '0px 100px 0px 100px',
-    // marginRight: 'auto',
-    // marginBottom: 'auto',
-    /* padding: 100px; */
-    // borderStyle: 'dotted',
-    //    border-color: rgba(0,0,0,0.12);
   }
 })
 
 function ccyFormat(num) {
-  return `${num.toFixed(2)}`
+  return `$ ${num.toFixed(2)}`
 }
-
-// function priceRow(qty, unit) {
-//   return qty * unit
-// }
-
-// function createRow(desc, qty, unit) {
-//   const price = priceRow(qty, unit)
-//   return {desc, qty, unit, price}
-// }
-
-// function subtotal(items) {
-//   return items.map(({price}) => price).reduce((sum, i) => sum + i, 0)
-// }
-
-// const rows = [
-//   createRow('Paperclips (Box)', 100, 1.15),
-//   createRow('Paper (Case)', 10, 45.99),
-//   createRow('Waste Basket', 2, 17.99),
-// ]
-
-// const invoiceSubtotal = subtotal(rows)
-// const invoiceTaxes = TAX_RATE * invoiceSubtotal
-// const invoiceTotal = invoiceTaxes + invoiceSubtotal
 
 export default function SpanningTable(props) {
   const classes = useStyles()
@@ -70,15 +41,25 @@ export default function SpanningTable(props) {
         <TableHead>
           <TableRow>
             <TableCell align="center" colSpan={3}>
-              Details
+              <h3>DETAILS</h3>
             </TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">
+              <h3>PRICE</h3>
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell align="right">Qty.</TableCell>
-            <TableCell align="right">Unit Price</TableCell>
-            <TableCell align="right">Sum</TableCell>
+            <TableCell>
+              <h3>Product</h3>
+            </TableCell>
+            <TableCell align="right">
+              <h3>Qty.</h3>
+            </TableCell>
+            <TableCell align="right">
+              <h3>Unit Price</h3>
+            </TableCell>
+            <TableCell align="right">
+              <h3>Sum</h3>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
