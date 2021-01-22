@@ -114,17 +114,15 @@ form div {
 }
 
 .order-complete {
-  /* display: flex;
-  flex-direction: column; */
-  float: right;
-  padding-top: 80px;
+  text-align: center;
+  padding: 5% 10% 10% 10%;
 }
 
 .order-complete-img {
   padding: 50px;
-  width: 80%;
-  height: 80%;
-  border: 50px solid #fa27de;
+  width: 70%;
+  height: 70%;
+  border: 50px solid #305ffc;
 }
 
 nav {
