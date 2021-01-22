@@ -2,7 +2,6 @@ import {Button} from '@material-ui/core'
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
 import {fetchCart, getMasks, updateCart, deleteFromCart} from '../store'
 import CartDetails from './cart-details'
 import EmptyCart from './empty-cart'
@@ -69,10 +68,17 @@ export class ShoppingCart extends React.Component {
             />
             <Link to="/checkout">
               <Button
-                size="large"
                 variant="contained"
+                color="secondary"
                 type="submit"
-                style={{margin: '10px 100px'}}
+                className="checkout"
+                style={{
+                  maxWidth: '200px',
+                  maxHeight: '100px',
+                  minWidth: '150px',
+                  minHeight: '50px',
+                  fontSize: '16px'
+                }}
               >
                 Checkout
               </Button>

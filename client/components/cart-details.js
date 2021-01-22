@@ -16,11 +16,9 @@ const TAX_RATE = 0.07
 
 const useStyles = makeStyles({
   tableContainer: {
-    margin: '0px 100px 0px 100px'
+    margin: '0px 0px 15px 0px'
   },
   table: {
-    minWidth: 700,
-    maxWidth: 1200,
     alignContent: 'start'
   }
 })
@@ -43,7 +41,7 @@ export default function SpanningTable(props) {
             <TableCell align="center" colSpan={3}>
               <h3>DETAILS</h3>
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="left">
               <h3>PRICE</h3>
             </TableCell>
           </TableRow>

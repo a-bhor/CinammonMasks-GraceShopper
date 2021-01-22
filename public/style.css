@@ -90,7 +90,9 @@ form div {
 }
 
 .checkoutContainer {
-  margin: 4em;
+  width: 100%;
+  margin-left: 5em;
+  margin-right: 4em;
   text-align: left;
 }
 
@@ -101,17 +103,28 @@ form div {
   margin-bottom: 2vw;
 }
 
-#order-complete {
-  display: flex;
-  flex-direction: column;
-  margin-left: 38%;
+.checkout {
+  margin-top: 2vw;
+  float: right;
+}
+
+.place-order {
+  margin-top: 2vw;
+  float: right;
+}
+
+.order-complete {
+  /* display: flex;
+  flex-direction: column; */
+  float: right;
   padding-top: 80px;
 }
 
-#order-complete-img {
-  width: 50%;
-  height: 50%;
-  border: 5px solid #fa27de;
+.order-complete-img {
+  padding: 50px;
+  width: 80%;
+  height: 80%;
+  border: 50px solid #fa27de;
 }
 
 nav {

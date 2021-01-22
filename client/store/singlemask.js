@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // action constants
-const SET_SINGLE_MASK = 'GET_SINGLE_MASK'
+const SET_SINGLE_MASK = 'SET_SINGLE_MASK'
 
 export const setSingleMask = singleMask => ({
   type: SET_SINGLE_MASK,
