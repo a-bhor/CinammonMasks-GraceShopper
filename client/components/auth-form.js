@@ -34,7 +34,7 @@ function Copyright() {
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(7),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
@@ -48,7 +48,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 2, 2)
+  },
+  remember: {
+    margin: theme.spacing(0, 2, 0)
   }
 }))
 
@@ -78,7 +81,7 @@ const LogInForm = props => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            placeholder="Email address"
             name="email"
             autoComplete="email"
             autoFocus
@@ -89,17 +92,19 @@ const LogInForm = props => {
             required
             fullWidth
             name="password"
-            label="Password"
+            placeholder="Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
+            className={classes.remember}
             label="Remember me"
           />
           <Button
             type="submit"
+            margin="normal"
             fullWidth
             variant="contained"
             color="primary"
@@ -114,13 +119,15 @@ const LogInForm = props => {
               </Link> */}
             </Grid>
             <Grid item>
-              {/* <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link> */}
+              </Link>
             </Grid>
           </Grid>
         </form>
-        <a href="/auth/google">{displayName} with Google</a>
+        <div className="google">
+          <a href="/auth/google">{displayName} with Google</a>
+        </div>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -155,7 +162,7 @@ const SignInForm = props => {
             required
             fullWidth
             name="firstname"
-            label="First Name"
+            placeholder="First Name"
             type="firstname"
             id="firstname"
             autoComplete="firstname"
@@ -167,7 +174,7 @@ const SignInForm = props => {
             required
             fullWidth
             name="lastname"
-            label="Last Name"
+            placeholder="Last Name"
             type="lastname"
             id="lastname"
             autoComplete="lastname"
@@ -179,7 +186,7 @@ const SignInForm = props => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            placeholder="Email Address"
             name="email"
             autoComplete="email"
             autoFocus
@@ -191,12 +198,13 @@ const SignInForm = props => {
             required
             fullWidth
             name="password"
-            label="Password"
+            placeholder="Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
+            className={classes.remember}
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
