@@ -63,7 +63,7 @@ const Navbar = ({logOut, isLoggedIn, firstName, cart}) => {
               </Link>
 
               <div className="iconsright">
-                Welcome, {firstName}
+                {isLoggedIn ? `Welcome, ${firstName}` : null}
                 {/* Navbar Menu ........ */}
                 <Link to="/">
                   <Button
