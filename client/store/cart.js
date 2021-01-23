@@ -10,6 +10,10 @@ const UPDATE_CART = 'UPDATE_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const RESET_CART = 'RESET_CART'
 
+const windowGlobal = typeof window !== 'undefined' && window
+const localAdapter = windowGlobal
+  ? adapter(windowGlobal.localStorage)
+  : adapter(memoryStorage)
 /**
  * INITIAL STATE
  */
