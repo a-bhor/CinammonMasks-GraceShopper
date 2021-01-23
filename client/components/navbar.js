@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import {ShoppingCart} from '@material-ui/icons'
+import ShoppingCart from '@material-ui/icons/shoppingcart'
 import Badge from '@material-ui/core/Badge'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -52,32 +52,61 @@ const Navbar = ({logOut, isLoggedIn, firstName, cart}) => {
           <Toolbar className="navbar">
             <nav>
               {/* Shop Header ........ */}
-              <Link to="/">
-                <Button
-                  color="inherit"
-                  type="onSubmit"
-                  className="cinnamon-header"
-                >
-                  CINNAMON MASKS
-                </Button>
-              </Link>
+              {isLoggedIn ? (
+                <Link to="/home">
+                  <Button
+                    color="inherit"
+                    type="onSubmit"
+                    className="cinnamon-header"
+                  >
+                    CINNAMON MASKS
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/">
+                  <Button
+                    color="inherit"
+                    type="onSubmit"
+                    className="cinnamon-header"
+                  >
+                    CINNAMON MASKS
+                  </Button>
+                </Link>
+              )}
 
               <div className="iconsright">
                 {isLoggedIn ? `Welcome, ${firstName}` : null}
                 {/* Navbar Menu ........ */}
-                <Link to="/">
-                  <Button
-                    size="medium"
-                    color="inherit"
-                    type="onSubmit"
-                    style={{
-                      fontSize: '16px',
-                      margin: '0 20px'
-                    }}
-                  >
-                    <h4>MASKS</h4>
-                  </Button>
-                </Link>
+                {isLoggedIn ? (
+                  <Link to="/home">
+                    <Button
+                      size="medium"
+                      color="inherit"
+                      type="onSubmit"
+                      style={{
+                        fontSize: '16px',
+                        margin: '0 20px'
+                      }}
+                    >
+                      <h4>MASKS</h4>
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link to="/">
+                    <Button
+                      size="medium"
+                      color="inherit"
+                      type="onSubmit"
+                      style={{
+                        fontSize: '16px',
+                        margin: '0 20px'
+                      }}
+                    >
+                      <h4>MASKS</h4>
+                    </Button>
+                  </Link>
+                )}
+
                 {/* <Link to="/"><h4>MASKS</h4></Link> */}
                 <Button
                   aria-controls="navbar-menu"
