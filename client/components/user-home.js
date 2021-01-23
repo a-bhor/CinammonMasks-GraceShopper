@@ -1,34 +1,29 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import AllMasks from './all-masks'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  // const {email} = props
 
-  return (
-    <div className="welcomepage">
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+  return <AllMasks />
 }
 
 /**
  * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: state.user.email
-  }
-}
+ //  */
+// const mapState = state => {
+//   return {
+//     email: state.user.email
+//   }
+// // }
 
-export default connect(mapState)(UserHome)
+export default UserHome
 
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+// /**
+//  * PROP TYPES
+//  */
+// UserHome.propTypes = {
+//   email: PropTypes.string
+// }

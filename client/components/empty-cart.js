@@ -8,11 +8,7 @@ const EmptyCart = () => {
       <br />
       <center>
         <h3>
-          Click{' '}
-          <Link to="/">
-            <u>here </u>
-          </Link>
-          to continue shopping
+          <Link to="/">Click here to continue shopping</Link>
         </h3>
         <img src="https://pngimage.net/wp-content/uploads/2018/05/empty-cart-png.png" />
       </center>

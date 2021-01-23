@@ -54,7 +54,7 @@ export const auth = (
     dispatch(getUser(res.data))
     dispatch(resetCart())
     dispatch(fetchCart())
-    history.push('/home')
+    history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

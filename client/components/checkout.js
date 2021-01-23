@@ -55,9 +55,8 @@ class Checkout extends React.Component {
     return (
       <div className="checkoutContainer">
         <React.Fragment>
-          <div className="totalpricecheckout" />
           <p />
-          <h2>Shipping Address</h2>
+          <div className="shipping">SHIPPING ADDRESS</div>
           <p />
           <Typography variant="h3" gutterBottom />
           <Grid container spacing={6}>
@@ -163,7 +162,7 @@ class Checkout extends React.Component {
               />
             </Grid>
             <Grid item xs={12} md={10}>
-              <h2>Payment</h2>
+              <div className="payment">PAYMENT</div>
             </Grid>
             <Grid item xs={12} md={5}>
               <TextField
@@ -202,6 +201,7 @@ class Checkout extends React.Component {
                 autoComplete="cc-csc"
               />
             </Grid>
+
             <Grid item xs={12}>
               <FormControlLabel
                 control={

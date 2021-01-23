@@ -6,16 +6,17 @@ import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import ShoppingCart from '@material-ui/icons/shoppingcart'
+import Badge from '@material-ui/core/Badge'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import {withStyles} from '@material-ui/core/styles'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import {logout} from '../store'
 
-const Navbar = ({logOut, isLoggedIn}) => {
+const Navbar = ({logOut, isLoggedIn, firstName, cart}) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = event => {
-    console.log('event.currentTarget ', event.currentTarget)
     setAnchorEl(event.currentTarget)
   }
 
@@ -27,6 +28,22 @@ const Navbar = ({logOut, isLoggedIn}) => {
     logOut()
     handleClose()
   }
+
+  const StyledBadge = withStyles(theme => ({
+    badge: {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px'
+    }
+  }))(Badge)
+
+  const items = Object.values(cart)
+
+  const cartItems = items.reduce((accum, item) => {
+    accum += item
+    return accum
+  }, 0)
 
   return (
     <div>
@@ -46,6 +63,7 @@ const Navbar = ({logOut, isLoggedIn}) => {
               </Link>
 
               <div className="iconsright">
+                Welcome, {firstName}
                 {/* Navbar Menu ........ */}
                 <Link to="/">
                   <Button
@@ -53,7 +71,8 @@ const Navbar = ({logOut, isLoggedIn}) => {
                     color="inherit"
                     type="onSubmit"
                     style={{
-                      fontSize: '16px'
+                      fontSize: '16px',
+                      margin: '0 20px'
                     }}
                   >
                     <h4>MASKS</h4>
@@ -96,7 +115,9 @@ const Navbar = ({logOut, isLoggedIn}) => {
                 </Menu>
                 <Link to="/shopping-cart">
                   <Button>
-                    <ShoppingCart />
+                    <StyledBadge badgeContent={cartItems} color="secondary">
+                      <ShoppingCart />
+                    </StyledBadge>
                   </Button>
                 </Link>
               </div>
@@ -108,12 +129,15 @@ const Navbar = ({logOut, isLoggedIn}) => {
     </div>
   )
 }
+
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    firstName: state.user.firstName,
+    cart: state.cart
   }
 }
 const mapDispatch = dispatch => {
@@ -130,5 +154,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   logOut: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  firstName: PropTypes.string
 }
