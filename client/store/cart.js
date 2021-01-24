@@ -24,7 +24,6 @@ const RESET_CART = 'RESET_CART'
  ARCHANA: following code will be required for making cart persistent within session for the GUEST users
  */
 // const initialCart = {}
-let localStorage = window.localStorage
 const initialCart = localStorage.getItem('localCart')
   ? JSON.parse(localStorage.getItem('localCart'))
   : {}
